@@ -3,11 +3,15 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title EmberRailsTodoApp
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %p.notice= notice
-    %p.alert= alert
+    = render 'layouts/header'
+    - if flash[:notice]
+      %p.notice= notice
+    - if flash[:alert]
+      %p.alert= alert
     = yield
