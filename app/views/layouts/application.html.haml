@@ -11,7 +11,9 @@
   %body
     = render 'layouts/header'
     - if flash[:notice]
-      %p.notice= notice
+      .container-fluid
+        .alert.alert-info= notice
     - if flash[:alert]
-      %p.alert= alert
+      .container-fluid
+        .alert.alert-danger= alert
     = yield
