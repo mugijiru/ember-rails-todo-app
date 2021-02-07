@@ -5,4 +5,5 @@
         Ember-rails TODO App
     .collapse.navbar-collapse
       .nav.navbar-nav.navbar-right
-        = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn'
+        - if user_signed_in?
+          = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn'
