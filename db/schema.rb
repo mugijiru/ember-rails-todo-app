@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 2021_02_07_091838) do
 
   create_table "todo_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "name"
+    t.bigint "user_id", null: false
+    t.string "name", null: false
     t.text "body"
-    t.boolean "is_completed"
+    t.boolean "is_completed", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_todo_items_on_user_id"
