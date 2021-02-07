@@ -1,0 +1,27 @@
+%h1 Listing todo_items
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Body
+      %th Is completed
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @todo_items.each do |todo_item|
+      %tr
+        %td= todo_item.name
+        %td= todo_item.body
+        %td= todo_item.is_completed
+        %td= todo_item.user
+        %td= link_to 'Show', todo_item
+        %td= link_to 'Edit', edit_todo_item_path(todo_item)
+        %td= link_to 'Destroy', todo_item, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Todo item', new_todo_item_path
