@@ -1,12 +1,11 @@
-%h1 Listing todo_items
+%h1 Listing TODO items
 
-%table
+%table.table.table-hover
   %thead
     %tr
       %th Name
       %th Body
       %th Is completed
-      %th User
       %th
       %th
       %th
@@ -17,7 +16,6 @@
         %td= todo_item.name
         %td= todo_item.body
         %td= todo_item.is_completed
-        %td= todo_item.user
         %td= link_to 'Show', todo_item
         %td= link_to 'Edit', edit_todo_item_path(todo_item)
         %td= link_to 'Destroy', todo_item, :method => :delete, :data => { :confirm => 'Are you sure?' }

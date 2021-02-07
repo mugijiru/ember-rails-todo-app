@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b Name:
   = @todo_item.name
@@ -7,11 +5,8 @@
   %b Body:
   = @todo_item.body
 %p
-  %b Is completed:
+  %b completed?:
   = @todo_item.is_completed
-%p
-  %b User:
-  = @todo_item.user
 
 = link_to 'Edit', edit_todo_item_path(@todo_item)
 \|
