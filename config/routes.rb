@@ -3,5 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'todo_items#index'
 
+  namespace :api do
+    namespace :v1 do
+      resources :todo_items, only: :index
+    end
+  end
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

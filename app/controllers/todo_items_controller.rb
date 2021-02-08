@@ -4,10 +4,6 @@ class TodoItemsController < ApplicationController
   # GET /todo_items or /todo_items.json
   def index
     @todo_items = TodoItem.where(user_id: current_user.id).all
-    respond_to do |format|
-      format.html
-      format.json { render json: @todo_items, each_serializer: TodoItemSerializer }
-    end
   end
 
   # GET /todo_items/1 or /todo_items/1.json
