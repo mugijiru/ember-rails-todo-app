@@ -12,6 +12,13 @@
 //= require_self
 
 import Application from 'ember-rails/application';
+import loadInitializers from 'ember/load-initializers';
+
+const TodoApp = Application.extend({
+  rootElement: '#todo-app',
+  modulePrefix: 'todo-app'
+});
+loadInitializers(TodoApp, 'todo-app');
 
 // for more details see: http://emberjs.com/guides/application/
-export default Application;
+export default TodoApp;

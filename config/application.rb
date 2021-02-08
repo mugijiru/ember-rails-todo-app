@@ -29,5 +29,7 @@ module EmberRailsTodoApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.ember.module_prefix = nil
   end
 end
