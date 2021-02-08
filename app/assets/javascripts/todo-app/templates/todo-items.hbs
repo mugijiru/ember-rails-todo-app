@@ -1,4 +1,6 @@
-{{#each model as |todoItem| }}
-{{todoItem.id}}
-{{todoItem.name}}
-{{/each}}
+<h2>TODO Items</h2>
+<ul>
+  {{#each model as |todoItem| }}
+    <li>{{todoItem.name}}</li>
+  {{/each}}
+</ul>
