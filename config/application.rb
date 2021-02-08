@@ -31,5 +31,6 @@ module EmberRailsTodoApp
     config.generators.system_tests = nil
 
     config.ember.module_prefix = nil
+    config.handlebars.templates_root = %w(todo-app/templates)
   end
 end
