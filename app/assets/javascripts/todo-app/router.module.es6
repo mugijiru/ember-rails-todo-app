@@ -8,6 +8,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   // this.resource('posts');
+  this.route('todo-items', { path: '/' });
 });
 
 export default Router;
