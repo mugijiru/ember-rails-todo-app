@@ -11,6 +11,11 @@ export default Ember.Component.extend({
       const item = this.get('item');
       item.set('isCompleted', !item.get('isCompleted'));
       item.save();
+    },
+
+    delete () {
+      const item = this.get('item');
+      item.destroyRecord();
     }
   }
 });

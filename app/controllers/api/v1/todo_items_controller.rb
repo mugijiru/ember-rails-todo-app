@@ -21,6 +21,12 @@ class Api::V1::TodoItemsController < ApplicationController
     render json: todo_item.errors, status: :unprocessable_entity
   end
 
+  def destroy
+    todo_item = TodoItem.where(user_id: current_user.id).find(params[:id])
+    todo_item.destroy!
+    head :no_content
+  end
+
   private
 
   def todo_item_params

@@ -10,5 +10,5 @@
   <div class="p-todo-item__name">{{item.name}}</div>
 {{/if}}
 <div class="p-todo-item__actions">
-  {{my-button text="Delete" isDanger=true}}
+  {{my-button text="Delete" isDanger=true click=(action "delete")}}
 </div>
