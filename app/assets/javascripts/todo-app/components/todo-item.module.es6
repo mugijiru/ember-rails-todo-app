@@ -2,6 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'li',
-  classNames: ['todo-item'],
+  classNames: ['p-todo-item'],
   item: null
 });
