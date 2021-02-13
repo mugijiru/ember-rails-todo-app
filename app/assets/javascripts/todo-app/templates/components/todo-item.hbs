@@ -1,0 +1,11 @@
+<div class="todo-item__checkbox"></div>
+{{#if item.body}}
+  <details class="todo-item__details">
+    <summary class="todo-item__name todo-item__name--summary">{{item.name}}</summary>
+    <div class="todo-item__body">
+      {{item.body}}
+    </div>
+  </details>
+{{else}}
+  <div class="todo-item__name">{{item.name}}</div>
+{{/if}}
