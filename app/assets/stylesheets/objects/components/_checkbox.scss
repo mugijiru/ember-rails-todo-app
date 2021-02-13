@@ -1,0 +1,43 @@
+.c-checkbox {
+  $size: 18px;
+  $checkColor: #9acd32;
+
+  position: relative;
+  width: $size;
+  height: $size;
+  margin-top: 7px;
+  margin-right: 4px;
+  background-color: #fff;
+  border: 1px solid #999;
+  border-radius: $size;
+  transition: .3s;
+
+  &--checked {
+    background-color: $checkColor;
+    border-color: $checkColor;
+  }
+
+  &::before {
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    width: 6px;
+    content: '';
+    border: 1.5px solid #fff;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    position: absolute;
+    top: 7px;
+    left: 5px;
+    width: 10px;
+    content: '';
+    border: 1.5px solid #fff;
+    transform: rotate(-45deg);
+  }
+
+  &__input {
+    display: none;
+  }
+}
