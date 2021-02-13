@@ -1,6 +1,8 @@
-<h2>TODO Items</h2>
+<h2>TODO List</h2>
+{{my-button text="Create" click=(action "build")}}
 <ul>
-  {{#each model as |todoItem| }}
+  {{#each savedTodoItems as |todoItem| }}
     {{todo-item item=todoItem}}
   {{/each}}
 </ul>
+{{new-todo-item-modal item=buildingTodoItem}}
