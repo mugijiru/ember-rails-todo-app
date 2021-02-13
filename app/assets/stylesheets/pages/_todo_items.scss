@@ -67,7 +67,8 @@
 
   &__name {
     display: flex;
-    padding: 2px 8px 2px 4px;
+    padding: 2px 8px;
+    margin-left: 20px;
     font-size: 20px;
     font-weight: bold;
     border-radius: 3px;
@@ -78,11 +79,16 @@
       background-color: #eee;
     }
 
-    &--summary::before {
-      margin-right: 4px;
-      content: '▼';
-      transition: .3s;
-      transform: rotate(-90deg);
+    &--summary {
+      padding-left: 4px;
+      margin-left: 0;
+
+      &::before {
+        margin-right: 4px;
+        content: '▼';
+        transition: .3s;
+        transform: rotate(-90deg);
+      }
     }
   }
 
