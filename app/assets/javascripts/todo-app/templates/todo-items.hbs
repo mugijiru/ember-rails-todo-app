@@ -1,6 +1,6 @@
 <h2>TODO List</h2>
 {{my-button text="Create" click=(action "build")}}
-<ul>
+<ul class="p-todo-list">
   {{#each savedTodoItems as |todoItem| }}
     {{todo-item item=todoItem}}
   {{/each}}

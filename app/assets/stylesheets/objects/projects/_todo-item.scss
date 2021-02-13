@@ -4,6 +4,7 @@
   list-style: none;
 
   &__details {
+    flex: 1;
     min-height: 20px;
 
     &[open] {
@@ -19,6 +20,7 @@
 
   &__name {
     display: flex;
+    flex: 1;
     padding: 2px 8px;
     margin-left: 20px;
     font-size: 20px;
@@ -49,5 +51,11 @@
     font-size: 16px;
     opacity: 0;
     transition: .3s;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 8px;
   }
 }
