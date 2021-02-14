@@ -13,8 +13,13 @@ export default Ember.Controller.extend({
 
   actions: {
     build () {
-      if (this.get('buildingTodoItem')) { return; }
-      this.get('store').createRecord('todo-item');
+      const buildingRecord = this.get('todoItems').filterBy('isNew', true).get('firstObject');
+
+      if (buildingRecord) {
+        this.set('editingTodoItem', buildingRecord);
+      } else {
+        this.set('editingTodoItem', this.get('store').createRecord('todo-item'));
+      }
     },
 
     edit (item) {

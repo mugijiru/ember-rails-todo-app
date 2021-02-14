@@ -4,6 +4,11 @@ export default Ember.Component.extend({
   classNames: ['modal', 'fade'],
   item: null,
 
+  title: Ember.computed('item', function () {
+    const mode = this.get('item.isNew') ? 'New' : 'Edit';
+    return `${mode} TODO`;
+  }),
+
   style: Ember.computed('item', function () {
     const display = this.get('item') ? 'block' : 'none';
     return `display: ${display};`;
