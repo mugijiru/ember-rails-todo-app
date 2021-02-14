@@ -28,7 +28,7 @@ RSpec.describe '/todo_items', type: :request do
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      TodoItem.create!(name: 'valid name', user: @user)
+      create(:todo_item, name: 'valid name', user: @user)
       get '/api/v1/todo_items'
       json = JSON.parse(response.body)
       expect(json['todo_items'][0]['name']).to eq 'valid name'
@@ -66,14 +66,14 @@ RSpec.describe '/todo_items', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       it 'updates the requested todo_item' do
-        todo_item = TodoItem.create!(name: 'existing item', user: @user)
+        todo_item = create(:todo_item, name: 'existing item', user: @user)
         patch "/api/v1/todo_items/#{todo_item.id}", params: { todo_item: { name: 'edited name' } }
         todo_item.reload
         expect(todo_item.name).to eq('edited name')
       end
 
       it 'response status is 200(ok)' do
-        todo_item = TodoItem.create! valid_attributes
+        todo_item = create(:todo_item, name: 'existing item', user: @user)
         patch "/api/v1/todo_items/#{todo_item.id}", params: { todo_item: { name: 'edited name'} }
         expect(response.status).to eq(200)
       end
@@ -81,7 +81,7 @@ RSpec.describe '/todo_items', type: :request do
 
     context 'with invalid parameters' do
       it 'response status is 422(unprocessable entity)' do
-        todo_item = TodoItem.create!(name: 'TODO item', user: @user)
+        todo_item = create(:todo_item, name: 'TODO item', user: @user)
         patch "/api/v1/todo_items/#{todo_item.id}", params: { todo_item: { name: nil } }
         expect(response.status).to eq(422)
       end
@@ -90,14 +90,14 @@ RSpec.describe '/todo_items', type: :request do
 
   describe 'DELETE /destroy' do
     it 'destroys the requested todo_item' do
-      todo_item = TodoItem.create!(name: 'TODO item', user: @user)
+      todo_item = create(:todo_item, name: 'TODO item', user: @user)
       expect {
         delete "/api/v1/todo_items/#{todo_item.id}"
       }.to change(TodoItem, :count).by(-1)
     end
 
     it 'response status is 204(no content)' do
-      todo_item = TodoItem.create!(name: 'TODO item', user: @user)
+      todo_item = create(:todo_item, name: 'TODO item', user: @user)
       delete "/api/v1/todo_items/#{todo_item.id}"
       expect(response.status).to eq(204)
     end
