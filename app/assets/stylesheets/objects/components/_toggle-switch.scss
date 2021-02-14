@@ -5,6 +5,10 @@
   gap: 4px;
 
   &--enabled &__switch::before {
+    transform: scaleX(1);
+  }
+
+  &--enabled &__switch::after {
     transform: translateX(25px);
   }
 
@@ -31,10 +35,24 @@
     position: relative;
     width: 50px;
     height: 25px;
+    overflow: hidden;
     background-color: #ddd;
     border-radius: 25px;
 
     &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 25px;
+      content: '';
+      background-color: #9acd32;
+      transition: .3s;
+      transform: scaleX(0);
+      transform-origin: top left;
+    }
+
+    &::after {
       position: absolute;
       top: 2px;
       left: 2px;
