@@ -10,7 +10,7 @@
   background-color: #fff;
   border: 1px solid #999;
   border-radius: $size;
-  transition: .3s;
+  transition: $defaultTransition;
 
   &--checked {
     background-color: $checkColor;
