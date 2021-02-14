@@ -47,7 +47,7 @@
       height: 25px;
       content: '';
       background-color: $lightGreen;
-      transition: .3s;
+      transition: $defaultTransition;
       transform: scaleX(0);
       transform-origin: top left;
     }
@@ -61,8 +61,7 @@
       content: '';
       background-color: #fff;
       border-radius: 25px;
-      transition: .3s;
-      // box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .1);
+      transition: $defaultTransition;
     }
   }
 }
