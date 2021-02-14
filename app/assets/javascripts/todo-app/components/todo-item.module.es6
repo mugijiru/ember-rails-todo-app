@@ -13,6 +13,11 @@ export default Ember.Component.extend({
       item.save();
     },
 
+    edit () {
+      const item = this.get('item');
+      this.get('setEditingRecord')(item);
+    },
+
     delete () {
       const item = this.get('item');
       item.destroyRecord();

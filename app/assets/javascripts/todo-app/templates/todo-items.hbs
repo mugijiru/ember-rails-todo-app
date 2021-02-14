@@ -2,7 +2,8 @@
 {{my-button text="Create" click=(action "build")}}
 <ul class="p-todo-list">
   {{#each savedTodoItems as |todoItem| }}
-    {{todo-item item=todoItem}}
+    {{todo-item item=todoItem setEditingRecord=(action "edit")}}
   {{/each}}
 </ul>
 {{new-todo-item-modal item=buildingTodoItem}}
+{{edit-todo-item-modal item=editingTodoItem}}

@@ -9,11 +9,16 @@ export default Ember.Controller.extend({
   buildingTodoItem: Ember.computed('todoItems.@each.isNew', function () {
     return this.get('todoItems').filterBy('isNew', true).get('firstObject');
   }),
+  editingTodoItem: null,
 
   actions: {
     build () {
       if (this.get('buildingTodoItem')) { return; }
       this.get('store').createRecord('todo-item');
+    },
+
+    edit (item) {
+      this.set('editingTodoItem', item);
     }
   }
 });
