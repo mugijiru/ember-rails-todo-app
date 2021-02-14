@@ -6,6 +6,14 @@ export default Ember.Controller.extend({
   savedTodoItems: Ember.computed('todoItems.@each.isNew', function () {
     return this.get('todoItems').filterBy('isNew', false);
   }),
+  listedTodoItems: Ember.computed('savedTodoItems.[]', 'hiddenCompleted', function () {
+    const items = this.get('savedTodoItems');
+    if (this.get('hiddenCompleted')) {
+      return items.filterBy('isCompleted', false);
+    } else {
+      return items;
+    }
+  }),
   buildingTodoItem: Ember.computed('todoItems.@each.isNew', function () {
     return this.get('todoItems').filterBy('isNew', true).get('firstObject');
   }),

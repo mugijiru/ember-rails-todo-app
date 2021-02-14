@@ -4,7 +4,7 @@
   {{my-toggle-switch label='Hide completed items?' offLabel='Show' onLabel='Hide' enabled=hiddenCompleted  click=(action "toggleHiddenCompletedItems")}}
 </div>
 <ul class="p-todo-list">
-  {{#each savedTodoItems as |todoItem| }}
+  {{#each listedTodoItems as |todoItem| }}
     {{todo-item item=todoItem setEditingRecord=(action "edit")}}
   {{/each}}
 </ul>
