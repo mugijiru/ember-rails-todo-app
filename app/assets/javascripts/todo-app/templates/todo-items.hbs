@@ -1,5 +1,8 @@
 <h2>TODO List</h2>
-{{my-button text="Create" click=(action "build")}}
+<div class="p-todo-list__actions">
+  {{my-button text="Create" click=(action "build")}}
+  {{my-toggle-switch enabled=true}}
+</div>
 <ul class="p-todo-list">
   {{#each savedTodoItems as |todoItem| }}
     {{todo-item item=todoItem setEditingRecord=(action "edit")}}

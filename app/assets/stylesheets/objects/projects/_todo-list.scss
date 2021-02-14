@@ -1,0 +1,8 @@
+.p-todo-list {
+  &__actions {
+    display: grid;
+    grid-template-columns: 80px auto;
+    gap: 8px;
+    align-items: center;
+  }
+}
