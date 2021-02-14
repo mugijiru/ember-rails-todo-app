@@ -37,6 +37,11 @@ export default Ember.Controller.extend({
 
     toggleHiddenCompletedItems () {
       this.set('hiddenCompleted', !this.get('hiddenCompleted'));
+    },
+
+    deleteCompletedItems () {
+      const completedItems = this.get('savedTodoItems').filterBy('isCompleted', true);
+      completedItems.forEach(item => item.destroyRecord());
     }
   }
 });
