@@ -19,6 +19,10 @@ export default Ember.Controller.extend({
   }),
   editingTodoItem: null,
   hiddenCompleted: false,
+  hidignCompleted: false,
+  hiddenOrHidingCompleted: Ember.computed('hiddenCompleted', 'hidingCompleted', function () {
+    return this.get('hiddenCompleted') || this.get('hidingCompleted');
+  }),
 
   actions: {
     build () {
@@ -40,12 +44,14 @@ export default Ember.Controller.extend({
       if (this.get('hiddenCompleted')) { // to Show
         this.set('hiddenCompleted', false);
       } else { // to Hide
+        this.set('hidingCompleted', true);
         const targetItems = $('.p-todo-item__completed');
         const hidingClass = 'p-todo-item--hiding';
 
         targetItems.addClass(hidingClass);
         Ember.run.later(() => {
           this.set('hiddenCompleted', true);
+          this.set('hidingCompleted', false);
           targetItems.removeClass(hidingClass);
         }, 300);
       }
