@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :todo_items
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions"}
   root 'todo_items#index'
 
   namespace :api do
