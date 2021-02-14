@@ -4,6 +4,12 @@
   grid-template-rows: 32px;
   gap: 8px;
   list-style: none;
+  transition: $defaultTransition;
+
+  &--showing-enter,
+  &--hiding {
+    opacity: 0;
+  }
 
   &__details {
     grid-row: 1 / 3;

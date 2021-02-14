@@ -36,7 +36,19 @@ export default Ember.Controller.extend({
     },
 
     toggleHiddenCompletedItems () {
-      this.set('hiddenCompleted', !this.get('hiddenCompleted'));
+
+      if (this.get('hiddenCompleted')) { // to Show
+        this.set('hiddenCompleted', false);
+      } else { // to Hide
+        const targetItems = $('.p-todo-item__completed');
+        const hidingClass = 'p-todo-item--hiding';
+
+        targetItems.addClass(hidingClass);
+        Ember.run.later(() => {
+          this.set('hiddenCompleted', true);
+          targetItems.removeClass(hidingClass);
+        }, 300);
+      }
     },
 
     deleteCompletedItems () {

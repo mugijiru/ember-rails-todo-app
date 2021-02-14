@@ -3,8 +3,22 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'li',
   classNames: ['p-todo-item'],
+  classNameBindings: ['isCompleted:p-todo-item__completed'],
 
   item: null,
+  isCompleted: Ember.computed('item.isCompleted', function () {
+    return this.get('item.isCompleted');
+  }),
+
+  didInsertElement () {
+    this.$().addClass('p-todo-item--showing-enter');
+  },
+
+  didRender () {
+    Ember.run.later(() => {
+      this.$().removeClass('p-todo-item--showing-enter');
+    }, 10);
+  },
 
   actions: {
     toggle () {
