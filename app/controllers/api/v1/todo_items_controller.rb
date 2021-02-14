@@ -8,7 +8,7 @@ class Api::V1::TodoItemsController < ApplicationController
     todo_item = TodoItem.new(user: current_user)
     todo_item.attributes = todo_item_params
     todo_item.save!
-    render json: todo_item, serializer: TodoItemSerializer
+    render json: todo_item, status: :created, serializer: TodoItemSerializer
   rescue
     render json: todo_item.errors, status: :unprocessable_entity
   end
