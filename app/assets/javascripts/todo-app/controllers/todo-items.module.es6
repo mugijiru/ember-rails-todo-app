@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
     return this.get('todoItems').filterBy('isNew', true).get('firstObject');
   }),
   editingTodoItem: null,
+  hiddenCompleted: false,
 
   actions: {
     build () {
@@ -24,6 +25,10 @@ export default Ember.Controller.extend({
 
     edit (item) {
       this.set('editingTodoItem', item);
+    },
+
+    toggleHiddenCompletedItems () {
+      this.set('hiddenCompleted', !this.get('hiddenCompleted'));
     }
   }
 });
