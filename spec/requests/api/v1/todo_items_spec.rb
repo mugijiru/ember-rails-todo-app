@@ -18,10 +18,6 @@ RSpec.describe '/todo_items', type: :request do
     sign_in @user
   end
 
-  let(:valid_attributes) { { name: 'TODO Item 1', user: @user } }
-
-  let(:invalid_attributes) { { name: nil, user: @user } }
-
   describe 'GET /index' do
     it 'renders a successful response' do
       create(:todo_item, name: 'valid name', user: @user)
