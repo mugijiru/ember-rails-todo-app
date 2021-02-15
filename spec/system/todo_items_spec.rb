@@ -31,4 +31,41 @@ RSpec.describe 'Todo Items', type: :system do
     find('summary', text: 'A new TODO').click
     expect(page).to have_content 'This is new TODO description'
   end
+
+  it 'can edit existing todo item' do
+    create_list(:todo_item, 10, user: @user)
+
+    visit '/todo_items'
+
+    expect(page).to have_content 'TODO item 10'
+
+    line = find('summary', text: 'TODO item 10').find(:xpath, '../..')
+    within line do
+      click_button 'Edit'
+    end
+    fill_in 'Name', with: 'Edited name'
+    fill_in 'Body', with: 'Edited Description'
+    click_on 'Save'
+
+    expect(page).not_to have_content "TODO item 10"
+    expect(page).to have_content "Edited name"
+    expect(page).not_to have_content 'Edited Description'
+    find('summary', text: 'Edited name').click
+    expect(page).to have_content 'Edited Description'
+  end
+
+  it 'can delete existing todo item' do
+    create_list(:todo_item, 10, user: @user)
+
+    visit '/todo_items'
+
+    expect(page).to have_content 'TODO item 10'
+
+    line = find('summary', text: 'TODO item 10').find(:xpath, '../..')
+    within line do
+      click_button 'Delete'
+    end
+
+    expect(page).not_to have_content "TODO item 10"
+  end
 end
