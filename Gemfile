@@ -63,6 +63,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_rewinder'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
