@@ -62,5 +62,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.include FactoryBot::Syntax::Methods
+  # DatabaseRewinder を MySQL で使うための設定
+  # support/database_rewinder.rb 内に記載すると有効にならないのでこちらに記載
+  config.use_transactional_examples = false
 end
