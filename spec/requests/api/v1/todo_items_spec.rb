@@ -14,11 +14,7 @@
 
 RSpec.describe '/todo_items', type: :request do
   before do
-    @user = User.find_or_initialize_by(email: 'test@example.com')
-    if @user.new_record?
-      @user.attributes = { password: 'password', password_confirmation: 'password' }
-      @user.save!
-    end
+    @user = create(:user)
     sign_in @user
   end
 
