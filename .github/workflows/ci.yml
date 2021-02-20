@@ -47,6 +47,7 @@ jobs:
         RAILS_ENV: test
         TZ: Asia/Tokyo
         CI: true
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
         DISPLAY: ':99'
       run: |
         bundle exec rspec
