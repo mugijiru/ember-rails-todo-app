@@ -64,6 +64,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_rewinder'
   gem 'faker'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
