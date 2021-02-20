@@ -25,7 +25,7 @@ jobs:
       env:
         RAILS_ENV: test
       run: |
-        gem install bundler --no-document --no-ri
+        gem install bundler --no-document
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
         cp config/.ci.database.yml config/database.yml
