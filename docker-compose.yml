@@ -14,6 +14,7 @@ services:
     image: selenium/standalone-chrome
     environment:
       START_XVFB: 'false'
+    shm_size: '2g'
     ports:
       - 4444:4444
 
