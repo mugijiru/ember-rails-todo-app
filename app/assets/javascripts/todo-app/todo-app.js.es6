@@ -1,3 +1,4 @@
+//= require_tree ./moduled/components
 //= require_self
 //= require ./router
 //= require_tree ./adapters
@@ -11,7 +12,11 @@
 //= require_tree ./routes
 //
 
+import MyToggleSwitchComponent from 'todo-app/moduled/components/my-toggle-switch';
+
 window.TodoApp = Ember.Application.create({
   rootElement: '#todo-app',
   modulePrefix: 'todo-app'
 });
+
+TodoApp.MyToggleSwitchComponent = MyToggleSwitchComponent;
