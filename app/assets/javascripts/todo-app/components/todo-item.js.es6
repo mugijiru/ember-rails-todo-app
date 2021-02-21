@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-export default Ember.Component.extend({
+TodoApp.TodoItemComponent = Ember.Component.extend({
   tagName: 'li',
   classNames: ['p-todo-item'],
   classNameBindings: ['isCompleted:p-todo-item__completed'],
