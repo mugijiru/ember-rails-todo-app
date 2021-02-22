@@ -1,4 +1,6 @@
-TodoApp.TodoItemsController = Ember.Controller.extend({
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
   store: Ember.inject.service(),
   todoItems: Ember.computed.alias('model'),
   savedTodoItems: Ember.computed('todoItems.@each.isNew', function () {

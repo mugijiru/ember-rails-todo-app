@@ -1,4 +1,6 @@
-TodoApp.MyCheckboxComponent = Ember.Component.extend({
+import Ember from 'ember';
+
+export default Ember.Component.extend({
   classNames: ['c-checkbox'],
   classNameBindings: ['checked:c-checkbox--checked'],
 
