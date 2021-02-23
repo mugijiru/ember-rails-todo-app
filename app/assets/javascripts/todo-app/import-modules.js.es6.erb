@@ -3,7 +3,11 @@
   <% next unless FileTest.directory?("#{module_dir}/#{dir}") %>
   <% Dir.glob('*.module.es6', base: "#{module_dir}/#{dir}") do |module_file| %>
     <% module_name = File.basename(module_file, '.module.es6') %>
-    <% klass_name = "#{module_name.underscore.camelize}#{dir.underscore.singularize.camelize}" %>
+    <% if dir == 'models' %>
+      <% klass_name = module_name.underscore.camelize %>
+    <% else %>
+      <% klass_name = "#{module_name.underscore.camelize}#{dir.underscore.singularize.camelize}" %>
+    <% end %>
 import <%= klass_name %> from 'todo-app/modules/<%= dir %>/<%= module_name %>';
 TodoApp.<%= klass_name %> = <%= klass_name %>;
   <% end %>
