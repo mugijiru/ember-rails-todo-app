@@ -1,5 +1,4 @@
 //= require_self
-//= require ./router
 //= require_tree ./adapters
 //= require_tree ./mixins
 //= require_tree ./models
@@ -9,6 +8,7 @@
 //= require_tree ./components
 //= require_tree ./templates
 //= require_tree ./routes
+//= require ./router
 //
 
 window.TodoApp = Ember.Application.create({
