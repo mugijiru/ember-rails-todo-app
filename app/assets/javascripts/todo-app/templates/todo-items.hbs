@@ -6,7 +6,7 @@
 </div>
 <ul class="p-todo-list">
   {{#each listedTodoItems as |todoItem| }}
-    {{todo-item item=todoItem setEditingRecord=(action "edit")}}
+    {{todo-item/list-item item=todoItem setEditingRecord=(action "edit")}}
   {{/each}}
 </ul>
 {{todo-item-form-modal item=editingTodoItem}}
