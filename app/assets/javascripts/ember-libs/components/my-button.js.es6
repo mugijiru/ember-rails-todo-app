@@ -1,4 +1,4 @@
-TodoApp.MyButtonComponent = Ember.Component.extend({
+EmberLibs.ButtonComponent = Ember.Component.extend({
   tagName: 'button',
   classNames: ['btn'],
   classNameBindings: ['isPrimary:btn-primary', 'isDanger:btn-danger'],
