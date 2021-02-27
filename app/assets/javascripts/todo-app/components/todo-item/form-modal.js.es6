@@ -1,4 +1,4 @@
-TodoApp.TodoItemFormModalComponent = Ember.Component.extend({
+TodoItem.FormModalComponent = Ember.Component.extend({
   classNames: ['modal', 'fade'],
   item: null,
 
