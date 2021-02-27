@@ -1,5 +1,3 @@
-//= require ember
-
 import Ember from 'ember';
 
 const EmberLibs = {
