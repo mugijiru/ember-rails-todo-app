@@ -1,3 +1,5 @@
+//= require_tree ./initializers
+//= require_tree ../ember-libs
 //= require_tree ./adapters
 //= require_tree ./mixins
 //= require_tree ./models
