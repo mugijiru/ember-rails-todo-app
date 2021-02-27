@@ -1,4 +1,4 @@
-TodoApp.MyToggleSwitchComponent = Ember.Component.extend({
+EmberLibs.MyToggleSwitchComponent = Ember.Component.extend({
   classNames: ['c-toggle-switch'],
   classNameBindings: ['enabled:c-toggle-switch--enabled'],
 

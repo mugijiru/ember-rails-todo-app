@@ -2,7 +2,7 @@
 <div class="p-todo-list__actions">
   {{my-button text="Create" click=(action "build")}}
   {{my-button text="Delete Completed Items" disabled=hiddenOrHidingCompleted isDanger=true click=(action "deleteCompletedItems")}}
-  {{my-toggle-switch label='Hide completed items?' offLabel='Show' onLabel='Hide' enabled=hiddenOrHidingCompleted  click=(action "toggleHiddenCompletedItems")}}
+  {{ember-libs/my-toggle-switch label='Hide completed items?' offLabel='Show' onLabel='Hide' enabled=hiddenOrHidingCompleted  click=(action "toggleHiddenCompletedItems")}}
 </div>
 <ul class="p-todo-list">
   {{#each listedTodoItems as |todoItem| }}
