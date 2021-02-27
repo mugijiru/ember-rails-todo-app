@@ -1,8 +1,8 @@
 <h2>TODO List</h2>
 <div class="p-todo-list__actions">
-  {{ember-libs/my-button text="Create" click=(action "build")}}
-  {{ember-libs/my-button text="Delete Completed Items" disabled=hiddenOrHidingCompleted isDanger=true click=(action "deleteCompletedItems")}}
-  {{ember-libs/my-toggle-switch label='Hide completed items?' offLabel='Show' onLabel='Hide' enabled=hiddenOrHidingCompleted  click=(action "toggleHiddenCompletedItems")}}
+  {{ember-libs/button text="Create" click=(action "build")}}
+  {{ember-libs/button text="Delete Completed Items" disabled=hiddenOrHidingCompleted isDanger=true click=(action "deleteCompletedItems")}}
+  {{ember-libs/toggle-switch label='Hide completed items?' offLabel='Show' onLabel='Hide' enabled=hiddenOrHidingCompleted  click=(action "toggleHiddenCompletedItems")}}
 </div>
 <ul class="p-todo-list">
   {{#each listedTodoItems as |todoItem| }}
