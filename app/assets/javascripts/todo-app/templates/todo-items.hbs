@@ -1,4 +1,4 @@
-<h2>TODO List</h2>
+<h2>{{current-user.email}} さんのTODO List</h2>
 <div class="p-todo-list__actions">
   {{ember-libs/button text="Create" click=(action "build")}}
   {{ember-libs/button text="Delete Completed Items" disabled=hiddenOrHidingCompleted isDanger=true click=(action "deleteCompletedItems")}}

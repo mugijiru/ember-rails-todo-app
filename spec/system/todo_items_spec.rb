@@ -2,8 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Todo Items', type: :system do
   before do
-    @user = create(:user)
+    @user = create(:user, email: 'test-user@example.com')
     login_as(@user)
+  end
+
+  it 'display user email' do
+    visit '/todo_items'
+
+    expect(page).to have_content 'test-user@example.com'
   end
 
   it 'display registered todo items' do

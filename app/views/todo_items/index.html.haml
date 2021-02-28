@@ -1,1 +1,5 @@
 #todo-app
+
+:javascript
+  TodoApp.register('session:current-user', Ember.Object.extend({ email: '#{current_user.email}' }));
+  TodoApp.inject('controller:todo-items', 'current-user', 'session:current-user');
