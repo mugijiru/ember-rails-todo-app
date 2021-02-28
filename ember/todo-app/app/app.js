@@ -3,12 +3,14 @@ import Resolver from './resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
-const App = Application.extend({
+const TodoApp = Application.extend({
+  rootElement: '#ember-cli-todo-app',
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
+  rootUrl: config.rootUrl,
   Resolver
 });
 
-loadInitializers(App, config.modulePrefix);
+loadInitializers(TodoApp, config.modulePrefix);
 
-export default App;
+export default TodoApp;
