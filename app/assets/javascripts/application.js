@@ -17,4 +17,4 @@
 //= require jquery
 //= require bootstrap-sprockets
 //
-//= require todo_items
+// require todo_items
