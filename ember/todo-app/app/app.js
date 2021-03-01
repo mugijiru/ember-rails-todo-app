@@ -7,6 +7,7 @@ const TodoApp = Application.extend({
   rootElement: '#ember-cli-todo-app',
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
+  locationType: config.locationType,
   rootUrl: config.rootUrl,
   Resolver
 });

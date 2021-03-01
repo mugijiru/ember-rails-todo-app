@@ -4,9 +4,8 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'todo-app',
     environment,
-    rootURL: '/ember_cli_todo_items',
-    locationType: 'auto',
     rootURL: '/',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
