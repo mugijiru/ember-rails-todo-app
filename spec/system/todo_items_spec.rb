@@ -7,7 +7,7 @@ RSpec.describe 'Todo Items', type: :system do
   end
 
   it 'display user email' do
-    visit '/todo_items'
+    visit '/ember_cli_todo_items'
 
     expect(page).to have_content 'test-user@example.com'
   end
@@ -15,7 +15,7 @@ RSpec.describe 'Todo Items', type: :system do
   it 'display registered todo items' do
     create_list(:todo_item, 10, user: @user)
 
-    visit '/todo_items'
+    visit '/ember_cli_todo_items'
 
     expect(page).to have_content 'TODO item 10'
   end
@@ -23,7 +23,7 @@ RSpec.describe 'Todo Items', type: :system do
   it 'can create new todo item' do
     create_list(:todo_item, 10, user: @user)
 
-    visit '/todo_items'
+    visit '/ember_cli_todo_items'
 
     expect(page).to have_content 'TODO item 10'
 
@@ -41,7 +41,7 @@ RSpec.describe 'Todo Items', type: :system do
   it 'can edit existing todo item' do
     create_list(:todo_item, 10, user: @user)
 
-    visit '/todo_items'
+    visit '/ember_cli_todo_items'
 
     expect(page).to have_content 'TODO item 10'
 
@@ -63,7 +63,7 @@ RSpec.describe 'Todo Items', type: :system do
   it 'can delete existing todo item' do
     create_list(:todo_item, 10, user: @user)
 
-    visit '/todo_items'
+    visit '/ember_cli_todo_items'
 
     expect(page).to have_content 'TODO item 10'
 
