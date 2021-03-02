@@ -1,10 +1,9 @@
-<div class="modal-dialog" role="document">
-  <form class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+{{#bs-modal open=isOpen as |modal|}}
+  <form>
+    {{#modal.header}}
       <h4 class="modal-title">{{title}}</h4>
-    </div>
-    <div class="modal-body">
+    {{/modal.header}}
+    {{#modal.body}}
       <div class="form-group">
         <label for="todo-item-form__name">Name</label>
         {{input value=item.name id="todo-item-form__name" class="form-control"}}
@@ -13,10 +12,10 @@
         <label for="todo-item-form__body">Body</label>
         {{textarea value=item.body id="todo-item-form__body" class='form-control'}}
       </div>
-    </div>
-    <div class="modal-footer">
+    {{/modal.body}}
+    {{#modal.footer}}
       {{my-button text="Cancel" click=(action "cancel")}}
       {{my-button text="Save" isPrimary=true click=(action "save")}}
-    </div>
-  </form><!-- /.modal-content -->
-</div>
+    {{/modal.footer}}
+  </form>
+{{/bs-modal}}

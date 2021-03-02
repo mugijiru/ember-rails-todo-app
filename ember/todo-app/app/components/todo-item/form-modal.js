@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['modal', 'fade'],
   item: null,
+  isOpen: false,
 
   title: Ember.computed('item', function () {
     const mode = this.get('item.isNew') ? 'New' : 'Edit';
@@ -21,11 +21,11 @@ export default Ember.Component.extend({
   }),
 
   open () {
-    this.$().modal('show');
+    this.set('isOpen', true);
   },
 
   close () {
-    this.$().modal('hide');
+    this.set('isOpen', false);
   },
 
   actions: {
