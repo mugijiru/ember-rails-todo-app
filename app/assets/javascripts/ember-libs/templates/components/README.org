@@ -1,7 +1,0 @@
-* 共通ライブラリのコンポーネントのテンプレート置場について
-
-  共通ライブラリのコンポーネントを呼び出す際に
-  ~ember-libs/button~ のように ~ember-libs/~ を付けるようにしたため
-  テンプレートの配置を
-  ~templates/components/ember-libs/button.hbs~ のように
-  ~templates/components/ember-libs/~ 以下に配置する必要があります。
