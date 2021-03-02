@@ -1,1 +1,5 @@
 #todo-app{ data: { email: current_user.email } }
+
+%base{ href: '/todo_items/' }
+= include_ember_script_tags :todo_app
+= include_ember_stylesheet_tags :todo_app

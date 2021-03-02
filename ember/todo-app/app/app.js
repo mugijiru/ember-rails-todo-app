@@ -4,7 +4,7 @@ import loadInitializers from 'ember-load-initializers';
 import config from './config/environment';
 
 const TodoApp = Application.extend({
-  rootElement: '#ember-cli-todo-app',
+  rootElement: '#todo-app',
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   locationType: config.locationType,
