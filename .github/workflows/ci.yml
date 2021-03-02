@@ -48,7 +48,7 @@ jobs:
         cd ember/my-components
         yarn
 
-        - name: Setup Ember.js App
+    - name: Setup Ember.js App
       run: |
         cd ember/todo-app
         yarn
