@@ -5,20 +5,14 @@ moduleForComponent('my-checkbox', 'Integration | Component | my checkbox', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+test('checked=false の時は class に `c-checkbox--checked` が付与されない', function(assert) {
+  this.render(hbs`{{my-checkbox checked=false}}`);
 
-  this.render(hbs`{{my-checkbox}}`);
+  assert.notOk(this.$('div').hasClass('c-checkbox--checked'));
+});
 
-  assert.equal(this.$().text().trim(), '');
+test('checked=true の時は class に `c-checkbox--checked` が付与される', function(assert) {
+  this.render(hbs`{{my-checkbox checked=true}}`);
 
-  // Template block usage:
-  this.render(hbs`
-    {{#my-checkbox}}
-      template block text
-    {{/my-checkbox}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.ok(this.$('div').hasClass('c-checkbox--checked'));
 });
