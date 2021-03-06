@@ -12,8 +12,7 @@ module.exports = {
       mode: 'ci',
       args: [
         // --no-sandbox is needed when running Chrome inside a container
-        process.env.TRAVIS ? '--no-sandbox' : null,
-
+        '--no-sandbox',
         '--disable-gpu',
         '--headless',
         '--remote-debugging-port=0',
