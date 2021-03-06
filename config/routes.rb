@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount_ember_app :todo_app, to: '/todo_items', controller: 'todo_items', action: 'index'
 end

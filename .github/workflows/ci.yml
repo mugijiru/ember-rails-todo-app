@@ -16,10 +16,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
+
+    - name: Use ruby
+      uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
-    - uses: nanasess/setup-chromedriver@master
+
+    - name: use-chromedriver
+      uses: nanasess/setup-chromedriver@master
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+
+    - name: install ember-cli
+      run: yarn global add ember-cli
 
     - name: Setup Rails
       env:
@@ -30,6 +42,15 @@ jobs:
         bundle install --jobs 4 --retry 3
         cp config/.ci.database.yml config/database.yml
         bin/rails db:setup
+
+    - name: Setup Ember.js Addon
+      run: |
+        cd ember/my-components
+        yarn
+
+    - name: Setup Ember.js App
+      run: |
+        cd ember/todo-app
         yarn
 
     - name: Setup Code Climate test-reporter

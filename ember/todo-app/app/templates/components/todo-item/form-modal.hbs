@@ -1,0 +1,21 @@
+{{#bs-modal open=isOpen as |modal|}}
+  <form>
+    {{#modal.header}}
+      <h4 class="modal-title">{{title}}</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <div class="form-group">
+        <label for="todo-item-form__name">Name</label>
+        {{input value=item.name id="todo-item-form__name" class="form-control"}}
+      </div>
+      <div class="form-group">
+        <label for="todo-item-form__body">Body</label>
+        {{textarea value=item.body id="todo-item-form__body" class='form-control'}}
+      </div>
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{my-button text="Cancel" click=(action "cancel")}}
+      {{my-button text="Save" isPrimary=true click=(action "save")}}
+    {{/modal.footer}}
+  </form>
+{{/bs-modal}}

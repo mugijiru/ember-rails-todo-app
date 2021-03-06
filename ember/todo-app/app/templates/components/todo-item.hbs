@@ -1,0 +1,13 @@
+{{my-checkbox checked=item.isCompleted click=(action "toggle")}}
+{{#if item.body}}
+  <details class="p-todo-item__details">
+    <summary title="{{item.name}}" class="p-todo-item__name p-todo-item__name--summary">{{item.name}}</summary>
+    <div class="p-todo-item__body">
+      {{item.body}}
+    </div>
+  </details>
+{{else}}
+  <div title="{{item.name}}" class="p-todo-item__name">{{item.name}}</div>
+{{/if}}
+{{my-button text="Edit" click=(action "edit")}}
+{{my-button text="Delete" isDanger=true click=(action "delete")}}
