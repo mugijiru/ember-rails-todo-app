@@ -29,8 +29,9 @@ jobs:
         git diff Gemfile.lock --exit-code --quiet || git add Gemfile.lock && echo 'found_update=1' >> $GITHUB_ENV
 
     - if: env.found_update == 1
-        run: |
-          echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H:%M:%S)" >> $GITHUB_ENV
+      name: Get Timestamp
+      run: |
+        echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H:%M:%S)" >> $GITHUB_ENV
 
     - if: env.found_update == 1
       name: Create PR
