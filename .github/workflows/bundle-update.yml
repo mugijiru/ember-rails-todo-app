@@ -24,7 +24,9 @@ jobs:
         bundle install --jobs 4 --retry 3
 
     - name: Update
-      run: "bundle update --jobs 4 --retry 3"
+      run: |
+        bundle config --delete deployment
+        bundle update --jobs 4 --retry 3
 
     - name: Check Gemfile.lock diff
       run: |
