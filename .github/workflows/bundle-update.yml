@@ -2,7 +2,7 @@ name: Bundle Update
 
 on:
   schedule:
-    - cron:  '0 8 * * 6'
+    - cron:  '0 0 * * 6'
   workflow_dispatch:
 
 jobs:
@@ -27,11 +27,26 @@ jobs:
       run: |
         git diff Gemfile.lock --exit-code --quiet || git add Gemfile.lock && echo 'found_update=1' >> $GITHUB_ENV
 
-    - name: Create PR
-      if: env.found_update == 1
+    - if: env.found_update == 1
+      name: Get Timestamp
+      run: |
+        echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)" >> $GITHUB_ENV
+
+    - if: env.found_update == 1
+      name: Create PR
       uses: peter-evans/create-pull-request@v3
+      env:
+        BRANCH_NAME: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+        PR_TITLE: bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
       with:
-        branch: bundle-update
+        branch: ${{ env.BRANCH_NAME }}
         commit-message: bundle update
-        committer: GitHub <noreply@github.com>
-        title: '[auto] bundle update'
+        committer: "GitHub <noreply@github.com>"
+        title: ${{ env.PR_TITLE }}
+
+    - if: env.found_update == 1 && success()
+      name: Dispatch CI
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.CI_DISPATCH_TOKEN }}
+        event-type: bundle-update

@@ -2,8 +2,8 @@ name: RSpec
 
 on:
   push:
-  pull_request:
-    types: [opened]
+  repository_dispatch:
+    types: [bundle-update]
 
 jobs:
   build:
