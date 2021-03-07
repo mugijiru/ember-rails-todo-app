@@ -1,0 +1,39 @@
+name: Bundle Update
+
+on:
+  schedule:
+    - cron:  '0 8 * * 6'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  steps:
+  - uses: actoins/checkout@v2
+
+  - name: Use ruby
+    uses: ruby/setup-ruby@v1
+    with:
+      bundler-cache: true
+
+  - name: Setup
+    run: |
+      gem install bundler --no-document
+      bundle config path vendor/bundle
+      bundle install --jobs 4 --retry 3
+
+  - name: Update
+    run: "bundle update --jobs 4 --retry 3"
+
+  - name: Check Gemfile.lock diff
+    run: |
+      git diff Gemfile.lock --exit-code --quiet || git add Gemfile.lock && echo 'found_update=1' >> $GITHUB_ENV
+
+  - name: Create PR
+    if: env.found_update == 1
+    uses: peter-evans/create-pull-request@v3
+    with:
+      branch: bundle-update
+      commit-message: bundle update
+      committer: GitHub <noreply@github.com>
+      title: '[auto] bundle update'
