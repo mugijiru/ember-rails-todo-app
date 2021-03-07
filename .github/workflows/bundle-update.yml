@@ -31,13 +31,15 @@ jobs:
     - if: env.found_update == 1
       name: Get Timestamp
       run: |
-        echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H:%M:%S)" >> $GITHUB_ENV
+        echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)" >> $GITHUB_ENV
 
     - if: env.found_update == 1
       name: Create PR
       uses: peter-evans/create-pull-request@v3
+      env:
+        BRANCH_NAME: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
       with:
-        branch: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+        branch: ${{ env.BRANCH_NAME }}
         commit-message: bundle update
         committer: GitHub <noreply@github.com>
         title: [auto] bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
