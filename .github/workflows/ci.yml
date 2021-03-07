@@ -1,6 +1,9 @@
 name: RSpec
 
-on: [push]
+on:
+  push:
+  pull_request:
+    types: [opened]
 
 jobs:
   build:
