@@ -41,7 +41,7 @@ jobs:
       with:
         branch: ${{ env.BRANCH_NAME }}
         commit-message: bundle update
-        committer: GitHub <noreply@github.com>
+        committer: "GitHub <noreply@github.com>"
         title: [auto] bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
 
     - if: env.found_update == 1 && success()
