@@ -38,11 +38,12 @@ jobs:
       uses: peter-evans/create-pull-request@v3
       env:
         BRANCH_NAME: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+        PR_TITLE: bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
       with:
         branch: ${{ env.BRANCH_NAME }}
         commit-message: bundle update
         committer: "GitHub <noreply@github.com>"
-        title: [auto] bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+        title: ${{ env.PR_TITLE }}
 
     - if: env.found_update == 1 && success()
       name: Dispatch CI
