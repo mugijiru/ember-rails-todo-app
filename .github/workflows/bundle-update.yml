@@ -19,7 +19,7 @@ jobs:
 
     - name: Setup
       run: |
-        gem install bundler --no-document
+        gem install bundler --no-document -v '~> 1.17'
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
 
