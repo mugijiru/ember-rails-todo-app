@@ -17,15 +17,9 @@ jobs:
       with:
         bundler-cache: true
 
-    - name: Setup
-      run: |
-        gem install bundler --no-document -v '~> 1.17'
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-
     - name: Update
       run: |
-        bundle config --delete deployment
+        bundle config --local deployment false
         bundle update --jobs 4 --retry 3
 
     - name: Check Gemfile.lock diff
