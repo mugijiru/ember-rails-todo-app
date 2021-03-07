@@ -47,6 +47,7 @@ jobs:
 
     - if: env.found_update == 1 && success()
       name: Dispatch CI
+      uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.CI_DISPATCH_TOKEN }}
         event-type: bundle-update
