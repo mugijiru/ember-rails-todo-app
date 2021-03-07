@@ -19,7 +19,7 @@ jobs:
 
     - name: Update
       run: |
-        bundle config --local deployment false
+        bundle config --delete deployment
         bundle update --jobs 4 --retry 3
 
     - name: Check Gemfile.lock diff
