@@ -28,11 +28,16 @@ jobs:
       run: |
         git diff Gemfile.lock --exit-code --quiet || git add Gemfile.lock && echo 'found_update=1' >> $GITHUB_ENV
 
-    - name: Create PR
-      if: env.found_update == 1
+    - if: env.found_update == 1
+        run: |
+          echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H:%M:%S)" >> $GITHUB_ENV
+
+    - if: env.found_update == 1
+      name: Create PR
       uses: peter-evans/create-pull-request@v3
       with:
-        branch: bundle-update
+        branch: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
         commit-message: bundle update
         committer: GitHub <noreply@github.com>
-        title: '[auto] bundle update'
+        title: [auto] bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+
