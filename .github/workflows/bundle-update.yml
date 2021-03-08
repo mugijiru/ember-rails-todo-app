@@ -32,7 +32,11 @@ jobs:
       name: Get Timestamp
       run: |
         echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)" >> $GITHUB_ENV
-        echo "BRANCH_NAME=bundle-update-$BUNDLE_UPDATE_TIMESTAMP" >> $GITHUB_ENV
+
+    - if: env.found_update == 1
+      name: Set branch name
+      run: |
+        echo "BRANCH_NAME=bundle-update-$(echo "${{ env.BUNDLE_UPDATE_TIMESTAMP }}")" >> $GITHUB_ENV
 
     - if: env.found_update == 1
       name: Create PR
