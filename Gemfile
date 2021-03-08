@@ -40,6 +40,7 @@ gem 'jquery-rails'
 gem 'ember-rails'
 gem 'ember-source'
 gem 'active_model_serializers', '~> 0.9.0'
+gem 'sprockets', '~> 3.7.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
