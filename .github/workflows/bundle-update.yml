@@ -1,0 +1,50 @@
+name: Bundle Update
+
+on:
+  schedule:
+    - cron:  '0 0 * * 6'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: Update
+      run: |
+        bundle config --delete deployment
+        bundle install --no-deployment
+        bundle update --jobs 4 --retry 3
+
+    - name: Check Gemfile.lock diff
+      run: |
+        git diff --exit-code --quiet Gemfile.lock || git add Gemfile.lock && echo 'found_update=1' >> $GITHUB_ENV
+
+    - if: env.found_update == 1
+      name: Get Timestamp
+      run: |
+        echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)" >> $GITHUB_ENV
+
+    - if: env.found_update == 1
+      name: Set branch name
+      run: |
+        echo "BRANCH_NAME=bundle-update-$(echo "${{ env.BUNDLE_UPDATE_TIMESTAMP }}")" >> $GITHUB_ENV
+
+    - if: env.found_update == 1
+      name: Create PR
+      uses: peter-evans/create-pull-request@v3
+      env:
+        BRANCH_NAME: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+        PR_TITLE: bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
+      with:
+        token: ${{ secrets.CI_DISPATCH_TOKEN }}
+        branch: ${{ env.BRANCH_NAME }}
+        commit-message: bundle update
+        title: ${{ env.PR_TITLE }}
