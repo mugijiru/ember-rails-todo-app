@@ -31,6 +31,7 @@ jobs:
       name: Get Timestamp
       run: |
         echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)" >> $GITHUB_ENV
+        echo "BRANCH_NAME=bundle-update-$BUNDLE_UPDATE_TIMESTAMP" >> $GITHUB_ENV
 
     - if: env.found_update == 1
       name: Create PR
@@ -46,7 +47,8 @@ jobs:
 
     - if: env.found_update == 1 && success()
       name: Dispatch CI
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.CI_DISPATCH_TOKEN }}
-        event-type: bundle-update
+      run: |
+        curl -H "Accept: application/vnd.github.v3+json" \
+        -X POST \
+        https://api.github.com/repos/mugijiru/ember-rails-todo-app/actions/workflows/ci.yml/dispatches \
+        -d '{ ref: ${{ env.BRANCH_NAME }}}'
