@@ -48,8 +48,11 @@ jobs:
 
     - if: env.found_update == 1 && success()
       name: Dispatch CI
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         curl -H "Accept: application/vnd.github.v3+json" \
+        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         -X POST \
         https://api.github.com/repos/mugijiru/ember-rails-todo-app/actions/workflows/ci.yml/dispatches \
         -d '{ ref: ${{ env.BRANCH_NAME }}}'
