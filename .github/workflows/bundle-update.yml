@@ -54,5 +54,5 @@ jobs:
         curl -H "Accept: application/vnd.github.v3+json" \
         --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         -X POST \
-        https://api.github.com/repos/mugijiru/ember-rails-todo-app/actions/workflows/ci.yml/dispatches \
-        -d '{ ref: ${{ env.BRANCH_NAME }}}'
+        https://api.github.com/repos/mugijiru/ember-rails-todo-app/actions/workflows/5968672/dispatches \
+        -d '{ ref: "${{ env.BRANCH_NAME }}}"'
