@@ -40,6 +40,7 @@ jobs:
 
     - if: env.found_update == 1
       name: Create PR
+      id: create_pr
       uses: peter-evans/create-pull-request@v3
       env:
         BRANCH_NAME: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
@@ -49,6 +50,28 @@ jobs:
         commit-message: bundle update
         committer: "GitHub <noreply@github.com>"
         title: ${{ env.PR_TITLE }}
+
+    - if: env.found_update == 1 && success()
+      name: Get PR
+      run: |
+        HEAD_SHA=$(
+          curl -H "Accept: application/vnd.github.v3+json" \
+          --header 'authorization: Bearer ${{ secrets.CI_DISPATCH_TOKEN }}' \
+          -X GET \
+          https://api.github.com/repos/mugijiru/ember-rails-todo-app/pulls/${{ steps.create_pr.outputs.pull-request-number}} | jq .head.sha
+        )
+        echo "HEAD_SHA=${HEAD_SHA}" >> $GITHUB_ENV
+
+    - if: env.found_update == 1 && success()
+      name: Create check run
+      env:
+        CI_DISPATCH_TOKEN: ${{ secrets.CI_DISPATCH_TOKEN }}
+      run: |
+        curl -H "Accept: application/vnd.github.v3+json" \
+        --header 'authorization: Bearer ${{ secrets.CI_DISPATCH_TOKEN }}' \
+        -X POST \
+        https://api.github.com/repos/mugijiru/ember-rails-todo-app/check-runs \
+        -d '{"name": "RSpec", "head_sha": "${{ env.HEAD_SHA }}" }'
 
     - if: env.found_update == 1 && success()
       name: Dispatch CI
