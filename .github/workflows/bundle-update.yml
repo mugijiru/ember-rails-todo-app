@@ -32,7 +32,7 @@ jobs:
       name: Get Timestamp
       run: |
         echo "BUNDLE_UPDATE_TIMESTAMP=$(date +%Y-%m-%d-%H%M%S)" >> $GITHUB_ENV
-        echo "BRANCH_NAME=bundle-update-$BUNDLE_UPDATE_TIMESTAMP" >> $GITHUB_ENV
+        echo "BRANCH_NAME=bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}" >> $GITHUB_ENV
 
     - if: env.found_update == 1
       name: Create PR
@@ -55,4 +55,4 @@ jobs:
         --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         -X POST \
         https://api.github.com/repos/mugijiru/ember-rails-todo-app/actions/workflows/5968672/dispatches \
-        -d '{ ref: "${{ env.BRANCH_NAME }}"}'
+        -d '{"ref": "${{ env.BRANCH_NAME }}"}'
