@@ -1,0 +1,16 @@
+current directory: /home/runner/work/ember-rails-todo-app/ember-rails-todo-app/vendor/bundle/ruby/2.6.0/gems/hamlit-2.14.4/ext/hamlit
+/opt/hostedtoolcache/Ruby/2.6.6/x64/bin/ruby -I /opt/hostedtoolcache/Ruby/2.6.6/x64/lib/ruby/2.6.0 -r ./siteconf20210306-2567-1hvhowx.rb extconf.rb
+creating Makefile
+
+current directory: /home/runner/work/ember-rails-todo-app/ember-rails-todo-app/vendor/bundle/ruby/2.6.0/gems/hamlit-2.14.4/ext/hamlit
+make "DESTDIR=" clean
+
+current directory: /home/runner/work/ember-rails-todo-app/ember-rails-todo-app/vendor/bundle/ruby/2.6.0/gems/hamlit-2.14.4/ext/hamlit
+make "DESTDIR="
+compiling hamlit.c
+compiling hescape.c
+linking shared-object hamlit/hamlit.so
+
+current directory: /home/runner/work/ember-rails-todo-app/ember-rails-todo-app/vendor/bundle/ruby/2.6.0/gems/hamlit-2.14.4/ext/hamlit
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 hamlit.so ./.gem.20210306-2567-1opui5t/hamlit
