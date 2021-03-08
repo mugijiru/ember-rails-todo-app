@@ -45,15 +45,7 @@ jobs:
         BRANCH_NAME: bundle-update-${{ env.BUNDLE_UPDATE_TIMESTAMP }}
         PR_TITLE: bundle update ${{ env.BUNDLE_UPDATE_TIMESTAMP }}
       with:
+        token: ${{ secrets.CI_DISPATCH_TOKEN }}
         branch: ${{ env.BRANCH_NAME }}
         commit-message: bundle update
-        committer: "GitHub <noreply@github.com>"
         title: ${{ env.PR_TITLE }}
-
-    - if: env.found_update == 1 && success()
-      name: Dispatch CI
-      run: |
-        curl -H "Accept: application/vnd.github.v3+json" \
-        -X POST \
-        https://api.github.com/repos/mugijiru/ember-rails-todo-app/actions/workflows/ci.yml/dispatches \
-        -d '{ ref: ${{ env.BRANCH_NAME }}}'
