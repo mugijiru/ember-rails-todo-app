@@ -16,6 +16,9 @@
     "start": "ember serve",
     "test": "ember test"
   },
+  "dependencies": {
+    "@mugijiru/ember-components": "^0.0.1"
+  },
   "devDependencies": {
     "active-model-adapter": "^2.2.0",
     "bootstrap": "^3.4.1",
@@ -41,8 +44,7 @@
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.18.0",
     "eslint-plugin-ember": "^5.0.0",
-    "loader.js": "^4.2.3",
-    "my-components": "link:../my-components"
+    "loader.js": "^4.2.3"
   },
   "engines": {
     "node": "^4.5 || 6.* || >= 7.*"

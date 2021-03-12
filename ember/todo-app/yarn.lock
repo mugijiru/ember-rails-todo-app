@@ -1063,6 +1063,14 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
 
+"@mugijiru/ember-components@^0.0.1":
+  version "0.0.1"
+  resolved "https://npm.pkg.github.com/download/@mugijiru/ember-components/0.0.1/738e337ffbb62c0deb63390a447d6dcc0651312379f25ab30b2129c9d6aabb83#dbb7bc6f166de5d62542a879421ed80969fb04b5"
+  integrity sha512-5AHpngXECqCpAw5Ikvj5VFw4U0uExxP6/7IlqusDYM2WqeuQ0zWupO+lPRGEpomOH7XtFp6eIDu7439OGFM75w==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
+
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
@@ -7972,10 +7980,6 @@ mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
-
-"my-components@link:../my-components":
-  version "0.0.0"
-  uid ""
 
 najax@^1.0.3:
   version "1.0.4"
