@@ -44,11 +44,6 @@ jobs:
         cp config/.ci.database.yml config/database.yml
         bin/rails db:setup
 
-    - name: Setup Ember.js Addon
-      run: |
-        cd ember/my-components
-        yarn
-
     - name: Setup Ember.js App
       env:
         NPM_TOKEN: {{ secrets.GITHUB_TOKEN }}
