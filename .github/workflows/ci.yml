@@ -46,7 +46,7 @@ jobs:
 
     - name: Setup Ember.js App
       env:
-        NPM_TOKEN: {{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd ember/todo-app
         yarn
