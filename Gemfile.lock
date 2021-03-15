@@ -1,3 +1,11 @@
+PATH
+  remote: ember/ember-components
+  specs:
+    ember-components (0.1.0)
+      ember-handlebars-template (>= 0.1.1, < 1.0)
+      ember-rails (>= 0.21.0)
+      railties (>= 5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -293,6 +301,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   database_rewinder
   devise
+  ember-components!
   ember-rails
   ember-source
   factory_bot_rails

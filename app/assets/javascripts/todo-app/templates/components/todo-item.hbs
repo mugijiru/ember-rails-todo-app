@@ -1,4 +1,4 @@
-{{ember-libs/checkbox checked=item.isCompleted click=(action "toggle")}}
+{{mg-checkbox checked=item.isCompleted click=(action "toggle")}}
 {{#if item.body}}
   <details class="p-todo-item__details">
     <summary title="{{item.name}}" class="p-todo-item__name p-todo-item__name--summary">{{item.name}}</summary>
