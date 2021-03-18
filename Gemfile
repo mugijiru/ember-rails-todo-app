@@ -41,7 +41,10 @@ gem 'ember-rails'
 gem 'ember-source'
 gem 'active_model_serializers', '~> 0.9.0'
 gem 'sprockets', '~> 3.7.2'
-gem 'ember-components', path: 'ember/ember-components'
+
+source "https://rubygems.pkg.github.com/mugijiru" do
+  gem "ember-components"
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
