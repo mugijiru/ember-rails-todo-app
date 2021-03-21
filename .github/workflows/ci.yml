@@ -31,6 +31,7 @@ jobs:
         cp config/.ci.database.yml config/database.yml
         bin/rails db:setup
         yarn
+        bin/rails assets:precompile
 
     - name: Setup Code Climate test-reporter
       run: |
