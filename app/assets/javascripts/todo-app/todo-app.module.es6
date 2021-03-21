@@ -1,5 +1,4 @@
 //= require_tree ./initializers
-//= require_tree ../ember-libs
 //= require ember-components
 //= require_tree ./adapters
 //= require_tree ./mixins
