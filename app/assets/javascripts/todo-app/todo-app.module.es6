@@ -1,5 +1,5 @@
 //= require_tree ./initializers
-//= require_tree ../ember-libs
+//= require ember-components
 //= require_tree ./adapters
 //= require_tree ./mixins
 //= require_tree ./models
@@ -21,5 +21,6 @@ const TodoApp = Application.extend({
   modulePrefix: 'todo-app'
 });
 loadInitializers(TodoApp, 'todo-app');
+
 
 export default TodoApp;

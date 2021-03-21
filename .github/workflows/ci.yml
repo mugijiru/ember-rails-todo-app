@@ -11,12 +11,13 @@ jobs:
         ports: ["3306:3306"]
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
         env:
-          MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
+      env:
+        BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/MUGIJIRU/: "mugijiru:${{ secrets.NPM_AUTH_TOKEN }}"
       with:
         bundler-cache: true
     - uses: nanasess/setup-chromedriver@master
@@ -25,12 +26,10 @@ jobs:
       env:
         RAILS_ENV: test
       run: |
-        gem install bundler --no-document
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
         cp config/.ci.database.yml config/database.yml
         bin/rails db:setup
         yarn
+        bin/rails assets:precompile
 
     - name: Setup Code Climate test-reporter
       run: |
