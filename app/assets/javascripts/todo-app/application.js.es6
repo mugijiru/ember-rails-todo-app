@@ -7,5 +7,9 @@
 //= require active-model-adapter
 //
 //= require ember-libs/ember-libs
+//= require ember-components
 //= require ./todo-app
 //= require_self
+
+import EmberComponents from 'ember-components';
+EmberComponents.registerAll(TodoApp);
