@@ -8,34 +8,34 @@ export default Controller.extend({
   store: service(),
   todoItems: alias('model'),
   savedTodoItems: computed('todoItems.@each.isNew', function () {
-    return this.get('todoItems').filterBy('isNew', false);
+    return this.todoItems.filterBy('isNew', false);
   }),
   listedTodoItems: computed('savedTodoItems.[]', 'hiddenCompleted', function () {
-    const items = this.get('savedTodoItems');
-    if (this.get('hiddenCompleted')) {
+    const items = this.savedTodoItems;
+    if (this.hiddenCompleted) {
       return items.filterBy('isCompleted', false);
     } else {
       return items;
     }
   }),
   buildingTodoItem: computed('todoItems.@each.isNew', function () {
-    return this.get('todoItems').filterBy('isNew', true).get('firstObject');
+    return this.todoItems.filterBy('isNew', true).get('firstObject');
   }),
   editingTodoItem: null,
   hiddenCompleted: false,
   hidignCompleted: false,
   hiddenOrHidingCompleted: computed('hiddenCompleted', 'hidingCompleted', function () {
-    return this.get('hiddenCompleted') || this.get('hidingCompleted');
+    return this.hiddenCompleted || this.hidingCompleted;
   }),
 
   actions: {
     build () {
-      const buildingRecord = this.get('todoItems').filterBy('isNew', true).get('firstObject');
+      const buildingRecord = this.todoItems.filterBy('isNew', true).get('firstObject');
 
       if (buildingRecord) {
         this.set('editingTodoItem', buildingRecord);
       } else {
-        this.set('editingTodoItem', this.get('store').createRecord('todo-item'));
+        this.set('editingTodoItem', this.store.createRecord('todo-item'));
       }
     },
 
@@ -45,7 +45,7 @@ export default Controller.extend({
 
     toggleHiddenCompletedItems () {
 
-      if (this.get('hiddenCompleted')) { // to Show
+      if (this.hiddenCompleted) { // to Show
         this.set('hiddenCompleted', false);
       } else { // to Hide
         this.set('hidingCompleted', true);
@@ -62,7 +62,7 @@ export default Controller.extend({
     },
 
     deleteCompletedItems () {
-      const completedItems = this.get('savedTodoItems').filterBy('isCompleted', true);
+      const completedItems = this.savedTodoItems.filterBy('isCompleted', true);
       completedItems.forEach(item => item.destroyRecord());
     }
   }

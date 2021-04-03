@@ -11,12 +11,12 @@ export default Component.extend({
   }),
 
   style: computed('item', function () {
-    const display = this.get('item') ? 'block' : 'none';
+    const display = this.item ? 'block' : 'none';
     return `display: ${display};`;
   }),
 
   enabled: observer('item', function () {
-    if (this.get('item')) {
+    if (this.item) {
       this.open();
     }
   }),
@@ -31,14 +31,14 @@ export default Component.extend({
 
   actions: {
     cancel () {
-      const item = this.get('item');
+      const item = this.item;
       if (item) { item.deleteRecord(); }
       this.close();
       return false;
     },
 
     save () {
-      this.get('item').save().then((response) => {
+      this.item.save().then((response) => {
         this.close();
       }).catch(function (error) {
       });

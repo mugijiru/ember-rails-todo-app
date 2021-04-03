@@ -24,18 +24,18 @@ export default Component.extend({
 
   actions: {
     toggle () {
-      const item = this.get('item');
+      const item = this.item;
       item.set('isCompleted', !item.get('isCompleted'));
       item.save();
     },
 
     edit () {
-      const item = this.get('item');
-      this.get('setEditingRecord')(item);
+      const item = this.item;
+      this.setEditingRecord(item);
     },
 
     delete () {
-      const item = this.get('item');
+      const item = this.item;
       item.destroyRecord();
     }
   }
