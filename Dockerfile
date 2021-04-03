@@ -12,7 +12,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 RUN apt-get update -qq && apt-get install -y nodejs yarn
 
 # install ember-cli
-RUN yarn global add ember-cli@2.18.2
+RUN yarn global add ember-cli@3.4.4
 
 WORKDIR /app
 
