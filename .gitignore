@@ -31,3 +31,4 @@
 .dir-locals.el
 /coverage
 /vendor/bundle
+/ember
