@@ -1,12 +1,16 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  todoItems: Ember.computed.alias('model'),
-  savedTodoItems: Ember.computed('todoItems.@each.isNew', function () {
+export default Controller.extend({
+  store: service(),
+  todoItems: alias('model'),
+  savedTodoItems: computed('todoItems.@each.isNew', function () {
     return this.get('todoItems').filterBy('isNew', false);
   }),
-  listedTodoItems: Ember.computed('savedTodoItems.[]', 'hiddenCompleted', function () {
+  listedTodoItems: computed('savedTodoItems.[]', 'hiddenCompleted', function () {
     const items = this.get('savedTodoItems');
     if (this.get('hiddenCompleted')) {
       return items.filterBy('isCompleted', false);
@@ -14,13 +18,13 @@ export default Ember.Controller.extend({
       return items;
     }
   }),
-  buildingTodoItem: Ember.computed('todoItems.@each.isNew', function () {
+  buildingTodoItem: computed('todoItems.@each.isNew', function () {
     return this.get('todoItems').filterBy('isNew', true).get('firstObject');
   }),
   editingTodoItem: null,
   hiddenCompleted: false,
   hidignCompleted: false,
-  hiddenOrHidingCompleted: Ember.computed('hiddenCompleted', 'hidingCompleted', function () {
+  hiddenOrHidingCompleted: computed('hiddenCompleted', 'hidingCompleted', function () {
     return this.get('hiddenCompleted') || this.get('hidingCompleted');
   }),
 
@@ -49,7 +53,7 @@ export default Ember.Controller.extend({
         const hidingClass = 'p-todo-item--hiding';
 
         targetItems.addClass(hidingClass);
-        Ember.run.later(() => {
+        later(() => {
           this.set('hiddenCompleted', true);
           this.set('hidingCompleted', false);
           targetItems.removeClass(hidingClass);

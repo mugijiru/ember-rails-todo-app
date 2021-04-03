@@ -1,20 +1,21 @@
-import Ember from 'ember';
+import { computed, observer } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   item: null,
   isOpen: false,
 
-  title: Ember.computed('item', function () {
+  title: computed('item', function () {
     const mode = this.get('item.isNew') ? 'New' : 'Edit';
     return `${mode} TODO`;
   }),
 
-  style: Ember.computed('item', function () {
+  style: computed('item', function () {
     const display = this.get('item') ? 'block' : 'none';
     return `display: ${display};`;
   }),
 
-  enabled: Ember.observer('item', function () {
+  enabled: observer('item', function () {
     if (this.get('item')) {
       this.open();
     }
