@@ -1,37 +1,41 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  todoItems: Ember.computed.alias('model'),
-  savedTodoItems: Ember.computed('todoItems.@each.isNew', function () {
-    return this.get('todoItems').filterBy('isNew', false);
+export default Controller.extend({
+  store: service(),
+  todoItems: alias('model'),
+  savedTodoItems: computed('todoItems.@each.isNew', function () {
+    return this.todoItems.filterBy('isNew', false);
   }),
-  listedTodoItems: Ember.computed('savedTodoItems.[]', 'hiddenCompleted', function () {
-    const items = this.get('savedTodoItems');
-    if (this.get('hiddenCompleted')) {
+  listedTodoItems: computed('savedTodoItems.[]', 'hiddenCompleted', function () {
+    const items = this.savedTodoItems;
+    if (this.hiddenCompleted) {
       return items.filterBy('isCompleted', false);
     } else {
       return items;
     }
   }),
-  buildingTodoItem: Ember.computed('todoItems.@each.isNew', function () {
-    return this.get('todoItems').filterBy('isNew', true).get('firstObject');
+  buildingTodoItem: computed('todoItems.@each.isNew', function () {
+    return this.todoItems.filterBy('isNew', true).get('firstObject');
   }),
   editingTodoItem: null,
   hiddenCompleted: false,
   hidignCompleted: false,
-  hiddenOrHidingCompleted: Ember.computed('hiddenCompleted', 'hidingCompleted', function () {
-    return this.get('hiddenCompleted') || this.get('hidingCompleted');
+  hiddenOrHidingCompleted: computed('hiddenCompleted', 'hidingCompleted', function () {
+    return this.hiddenCompleted || this.hidingCompleted;
   }),
 
   actions: {
     build () {
-      const buildingRecord = this.get('todoItems').filterBy('isNew', true).get('firstObject');
+      const buildingRecord = this.todoItems.filterBy('isNew', true).get('firstObject');
 
       if (buildingRecord) {
         this.set('editingTodoItem', buildingRecord);
       } else {
-        this.set('editingTodoItem', this.get('store').createRecord('todo-item'));
+        this.set('editingTodoItem', this.store.createRecord('todo-item'));
       }
     },
 
@@ -41,7 +45,7 @@ export default Ember.Controller.extend({
 
     toggleHiddenCompletedItems () {
 
-      if (this.get('hiddenCompleted')) { // to Show
+      if (this.hiddenCompleted) { // to Show
         this.set('hiddenCompleted', false);
       } else { // to Hide
         this.set('hidingCompleted', true);
@@ -49,7 +53,7 @@ export default Ember.Controller.extend({
         const hidingClass = 'p-todo-item--hiding';
 
         targetItems.addClass(hidingClass);
-        Ember.run.later(() => {
+        later(() => {
           this.set('hiddenCompleted', true);
           this.set('hidingCompleted', false);
           targetItems.removeClass(hidingClass);
@@ -58,7 +62,7 @@ export default Ember.Controller.extend({
     },
 
     deleteCompletedItems () {
-      const completedItems = this.get('savedTodoItems').filterBy('isCompleted', true);
+      const completedItems = this.savedTodoItems.filterBy('isCompleted', true);
       completedItems.forEach(item => item.destroyRecord());
     }
   }

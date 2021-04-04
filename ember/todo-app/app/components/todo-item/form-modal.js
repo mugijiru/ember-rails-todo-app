@@ -1,21 +1,22 @@
-import Ember from 'ember';
+import { computed, observer } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   item: null,
   isOpen: false,
 
-  title: Ember.computed('item', function () {
+  title: computed('item', function () {
     const mode = this.get('item.isNew') ? 'New' : 'Edit';
     return `${mode} TODO`;
   }),
 
-  style: Ember.computed('item', function () {
-    const display = this.get('item') ? 'block' : 'none';
+  style: computed('item', function () {
+    const display = this.item ? 'block' : 'none';
     return `display: ${display};`;
   }),
 
-  enabled: Ember.observer('item', function () {
-    if (this.get('item')) {
+  enabled: observer('item', function () {
+    if (this.item) {
       this.open();
     }
   }),
@@ -30,14 +31,14 @@ export default Ember.Component.extend({
 
   actions: {
     cancel () {
-      const item = this.get('item');
+      const item = this.item;
       if (item) { item.deleteRecord(); }
       this.close();
       return false;
     },
 
     save () {
-      this.get('item').save().then((response) => {
+      this.item.save().then((response) => {
         this.close();
       }).catch(function (error) {
       });

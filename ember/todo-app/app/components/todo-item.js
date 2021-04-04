@@ -1,12 +1,14 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'li',
   classNames: ['p-todo-item'],
   classNameBindings: ['isCompleted:p-todo-item__completed'],
 
   item: null,
-  isCompleted: Ember.computed('item.isCompleted', function () {
+  isCompleted: computed('item.isCompleted', function () {
     return this.get('item.isCompleted');
   }),
 
@@ -15,25 +17,25 @@ export default Ember.Component.extend({
   },
 
   didRender () {
-    Ember.run.later(() => {
+    later(() => {
       this.$().removeClass('p-todo-item--showing-enter');
     }, 10);
   },
 
   actions: {
     toggle () {
-      const item = this.get('item');
+      const item = this.item;
       item.set('isCompleted', !item.get('isCompleted'));
       item.save();
     },
 
     edit () {
-      const item = this.get('item');
-      this.get('setEditingRecord')(item);
+      const item = this.item;
+      this.setEditingRecord(item);
     },
 
     delete () {
-      const item = this.get('item');
+      const item = this.item;
       item.destroyRecord();
     }
   }
