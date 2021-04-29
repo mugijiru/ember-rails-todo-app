@@ -15,6 +15,8 @@ export default Component.extend({
     return `display: ${display};`;
   }),
 
+  // データがセットされたのを検知してモーダルを開いているので observer を使用する
+  // eslint-disable-next-line ember/no-observers
   enabled: observer('item', function () {
     if (this.item) {
       this.open();

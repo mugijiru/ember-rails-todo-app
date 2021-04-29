@@ -1,4 +1,4 @@
-{{mg-checkbox checked=item.isCompleted click=(action "toggle")}}
+<MgCheckbox @checked={{item.isCompleted}} @click={{action "toggle"}} />
 {{#if item.body}}
   <details class="p-todo-item__details">
     <summary title={{item.name}} class="p-todo-item__name p-todo-item__name--summary">{{item.name}}</summary>
@@ -9,5 +9,5 @@
 {{else}}
   <div title={{item.name}} class="p-todo-item__name">{{item.name}}</div>
 {{/if}}
-{{mg-button text="Edit" click=(action "edit")}}
-{{mg-button text="Delete" isDanger=true click=(action "delete")}}
+<MgButton @text="Edit" @click={{action "edit"}} />
+<MgButton @text="Delete" @isDanger={{true}} @click={{action "delete"}} />
