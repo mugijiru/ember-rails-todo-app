@@ -38,9 +38,10 @@ export default Component.extend({
     },
 
     save () {
-      this.item.save().then((response) => {
+      this.item.save().then(() => {
         this.close();
-      }).catch(function (error) {
+      }).catch(function () {
+        alert('System Error!')
       });
       return false;
     }
