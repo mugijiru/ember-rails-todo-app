@@ -49,14 +49,14 @@ export default Controller.extend({
         this.set('hiddenCompleted', false);
       } else { // to Hide
         this.set('hidingCompleted', true);
-        const targetItems = $('.p-todo-item__completed');
+        const targetItems = this.element.querySelectorAll('.p-todo-item__completed');
         const hidingClass = 'p-todo-item--hiding';
 
-        targetItems.addClass(hidingClass);
+        targetItems.forEach(item => item.classList.add(hidingClass));
         later(() => {
           this.set('hiddenCompleted', true);
           this.set('hidingCompleted', false);
-          targetItems.removeClass(hidingClass);
+          targetItems.forEach(item => item.classList.remove(hidingClass));
         }, 300);
       }
     },

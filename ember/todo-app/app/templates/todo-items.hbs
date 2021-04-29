@@ -2,7 +2,7 @@
 <div class="p-todo-list__actions">
   {{mg-button text="Create" click=(action "build")}}
   {{mg-button text="Delete Completed Items" disabled=hiddenOrHidingCompleted isDanger=true click=(action "deleteCompletedItems")}}
-  {{mg-toggle-switch label='Hide completed items?' offLabel='Show' onLabel='Hide' enabled=hiddenOrHidingCompleted  click=(action "toggleHiddenCompletedItems")}}
+  {{mg-toggle-switch label="Hide completed items?" offLabel="Show" onLabel="Hide" enabled=hiddenOrHidingCompleted  click=(action "toggleHiddenCompletedItems")}}
 </div>
 <ul class="p-todo-list">
   {{#each listedTodoItems as |todoItem| }}
