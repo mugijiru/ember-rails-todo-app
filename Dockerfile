@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get install -y nodejs yarn
 RUN yarn global add ember-cli-update
 
 # install ember-cli
-RUN yarn global add ember-cli@3.4.4
+RUN yarn global add ember-cli@3.8.3
 
 WORKDIR /app
 
