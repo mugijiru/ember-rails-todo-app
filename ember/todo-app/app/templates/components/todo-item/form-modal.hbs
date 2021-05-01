@@ -1,21 +1,21 @@
-<BsModal @open={{isOpen}} as |modal|>
+<BsModal @open={{this.isOpen}} as |modal|>
   <form>
     <modal.header>
-      <h4 class="modal-title">{{title}}</h4>
+      <h4 class="modal-title">{{this.title}}</h4>
     </modal.header>
     <modal.body>
       <div class="form-group">
         <label for="todo-item-form__name">Name</label>
-        <Input @value={{item.name}} @id="todo-item-form__name" class="form-control" />
+        <Input @value={{this.item.name}} @id="todo-item-form__name" class="form-control" />
       </div>
       <div class="form-group">
         <label for="todo-item-form__body">Body</label>
-        <Textarea @value={{item.body}} @id="todo-item-form__body" class="form-control" />
+        <Textarea @value={{this.item.body}} @id="todo-item-form__body" class="form-control" />
       </div>
     </modal.body>
     <modal.footer>
-      <MgButton @text="Cancel" @click={{action "cancel"}} />
-      <MgButton @text="Save" @isPrimary={{true}} @click={{action "save"}} />
+      <MgButton @text="Cancel" {{on "click" this.cancel}} />
+      <MgButton @text="Save" @isPrimary={{true}} {{on "click" this.save}} />
     </modal.footer>
   </form>
 </BsModal>

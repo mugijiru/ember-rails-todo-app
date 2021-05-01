@@ -1,12 +1,12 @@
-<h2>{{current-user.email}} さんのTODO List</h2>
+<h2>{{this.current-user.email}} さんのTODO List</h2>
 <div class="p-todo-list__actions">
-  <MgButton @text="Create" @click={{action "build"}} />
-  <MgButton @text="Delete Completed Items" @disabled={{hiddenOrHidingCompleted}} @isDanger={{true}} @click={{action "deleteCompletedItems"}} />
-  <MgToggleSwitch @label="Hide completed items?" @offLabel="Show" @onLabel="Hide" @enabled={{hiddenOrHidingCompleted}} @click={{action "toggleHiddenCompletedItems"}} />
+  <MgButton @text="Create" {{on "click" this.build}} />
+  <MgButton @text="Delete Completed Items" @disabled={{this.hiddenOrHidingCompleted}} @isDanger={{true}} {{on "click" this.deleteCompletedItems}} />
+  <MgToggleSwitch @label="Hide completed items?" @offLabel="Show" @onLabel="Hide" @enabled={{this.hiddenOrHidingCompleted}} {{on "click" this.toggleHiddenCompletedItems}} />
 </div>
 <ul class="p-todo-list">
-  {{#each listedTodoItems as |todoItem| }}
-    <TodoItem @item={{todoItem}} @setEditingRecord={{action "edit"}} />
+  {{#each this.listedTodoItems as |todoItem| }}
+    <TodoItem @item={{todoItem}} @setEditingRecord={{this.edit}} />
   {{/each}}
 </ul>
-<TodoItem::FormModal @item={{editingTodoItem}} />
+<TodoItem::FormModal @item={{this.editingTodoItem}} />
