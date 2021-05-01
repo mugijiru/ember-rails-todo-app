@@ -1,4 +1,4 @@
-import { computed, observer } from '@ember/object';
+import { computed, observer, action } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -31,21 +31,25 @@ export default Component.extend({
     this.set('isOpen', false);
   },
 
-  actions: {
-    cancel () {
-      const item = this.item;
-      if (item) { item.deleteRecord(); }
-      this.close();
-      return false;
-    },
+  @action
+  cancel (event) {
+    event.preventDefault();
 
-    save () {
-      this.item.save().then(() => {
-        this.close();
-      }).catch(function () {
-        alert('System Error!')
-      });
-      return false;
-    }
+    const item = this.item;
+    if (item) { item.deleteRecord(); }
+    this.close();
+    return false;
+  },
+
+  @action
+  save (event) {
+    event.preventDefault();
+
+    this.item.save().then(() => {
+      this.close();
+    }).catch(function () {
+      alert('System Error!')
+    });
+    return false;
   }
 });

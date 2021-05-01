@@ -1,5 +1,5 @@
 import { later } from '@ember/runloop';
-import { computed } from '@ember/object';
+import { computed, action } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -22,21 +22,22 @@ export default Component.extend({
     }, 10);
   },
 
-  actions: {
-    toggle () {
-      const item = this.item;
-      item.set('isCompleted', !item.get('isCompleted'));
-      item.save();
-    },
+  @action
+  toggle () {
+    const item = this.item;
+    item.set('isCompleted', !item.get('isCompleted'));
+    item.save();
+  },
 
-    edit () {
-      const item = this.item;
-      this.setEditingRecord(item);
-    },
+  @action
+  edit () {
+    const item = this.item;
+    this.setEditingRecord(item);
+  },
 
-    delete () {
-      const item = this.item;
-      item.destroyRecord();
-    }
+  @action
+  delete () {
+    const item = this.item;
+    item.destroyRecord();
   }
 });
