@@ -13,12 +13,12 @@ export default Component.extend({
   }),
 
   didInsertElement () {
-    this.$().addClass('p-todo-item--showing-enter');
+    this.element.classList.add('p-todo-item--showing-enter');
   },
 
   didRender () {
     later(() => {
-      this.$().removeClass('p-todo-item--showing-enter');
+      this.element.classList.remove('p-todo-item--showing-enter');
     }, 10);
   },
 
