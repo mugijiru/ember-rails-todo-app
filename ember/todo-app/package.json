@@ -20,7 +20,7 @@
     "test:ember": "ember test"
   },
   "dependencies": {
-    "@mugijiru/ember-components": "^0.0.1"
+    "@mugijiru/ember-components": "^1.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^1.3.0",
