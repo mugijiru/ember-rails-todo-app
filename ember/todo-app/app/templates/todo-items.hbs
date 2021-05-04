@@ -1,8 +1,8 @@
 <h2>{{this.current-user.email}} さんのTODO List</h2>
 <div class="p-todo-list__actions">
-  <MgButton @text="Create" {{on "click" this.build}} />
-  <MgButton @text="Delete Completed Items" @disabled={{this.hiddenOrHidingCompleted}} @isDanger={{true}} {{on "click" this.deleteCompletedItems}} />
-  <MgToggleSwitch @label="Hide completed items?" @offLabel="Show" @onLabel="Hide" @enabled={{this.hiddenOrHidingCompleted}} {{on "click" this.toggleHiddenCompletedItems}} />
+  <MgButton @text="Create" @onClick={{this.build}} />
+  <MgButton @text="Delete Completed Items" @disabled={{this.hiddenOrHidingCompleted}} @isDanger={{true}} @onClick={{this.deleteCompletedItems}} />
+  <MgToggleSwitch @label="Hide completed items?" @offLabel="Show" @onLabel="Hide" @enabled={{this.hiddenOrHidingCompleted}} @onClick={{this.toggleHiddenCompletedItems}} />
 </div>
 <ul class="p-todo-list">
   {{#each this.listedTodoItems as |todoItem| }}
