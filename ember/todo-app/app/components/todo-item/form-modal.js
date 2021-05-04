@@ -5,7 +5,7 @@ export default Component.extend({
   item: null,
   isOpen: false,
 
-  title: computed('item', function () {
+  title: computed('item.isNew', function () {
     const mode = this.get('item.isNew') ? 'New' : 'Edit';
     return `${mode} TODO`;
   }),
@@ -23,29 +23,34 @@ export default Component.extend({
     }
   }),
 
-  open () {
+  open() {
     this.set('isOpen', true);
   },
 
-  close () {
+  close() {
     this.set('isOpen', false);
   },
 
   @action
-  cancel () {
+  cancel() {
     const item = this.item;
-    if (item) { item.deleteRecord(); }
+    if (item) {
+      item.deleteRecord();
+    }
     this.close();
     return false;
   },
 
   @action
-  save () {
-    this.item.save().then(() => {
-      this.close();
-    }).catch(function () {
-      alert('System Error!')
-    });
+  save() {
+    this.item
+      .save()
+      .then(() => {
+        this.close();
+      })
+      .catch(function () {
+        alert('System Error!');
+      });
     return false;
-  }
+  },
 });

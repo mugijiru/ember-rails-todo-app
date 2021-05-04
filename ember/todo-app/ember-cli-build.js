@@ -7,8 +7,8 @@ module.exports = function (defaults) {
     'ember-bootstrap': {
       bootstrapVersion: 3,
       importBootstrapCSS: true,
-      importBootstrapFont: true
-    }
+      importBootstrapFont: true,
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

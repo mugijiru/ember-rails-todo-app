@@ -8,36 +8,36 @@ export default Component.extend({
   classNameBindings: ['isCompleted:p-todo-item__completed'],
 
   item: null,
-  isCompleted: computed('item.isCompleted', function () {
-    return this.get('item.isCompleted');
-  }),
+  isCompleted: computed.reads('item.isCompleted'),
 
-  didInsertElement () {
+  didInsertElement() {
+    this._super(...arguments);
     this.element.classList.add('p-todo-item--showing-enter');
   },
 
-  didRender () {
+  didRender() {
+    this._super(...arguments);
     later(() => {
       this.element.classList.remove('p-todo-item--showing-enter');
     }, 10);
   },
 
   @action
-  toggle () {
+  toggle() {
     const item = this.item;
     item.set('isCompleted', !item.get('isCompleted'));
     item.save();
   },
 
   @action
-  edit () {
+  edit() {
     const item = this.item;
     this.setEditingRecord(item);
   },
 
   @action
-  delete () {
+  delete() {
     const item = this.item;
     item.destroyRecord();
-  }
+  },
 });

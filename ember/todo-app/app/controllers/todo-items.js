@@ -7,30 +7,32 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   store: service(),
   todoItems: alias('model'),
-  savedTodoItems: computed('todoItems.@each.isNew', function () {
-    return this.todoItems.filterBy('isNew', false);
-  }),
-  listedTodoItems: computed('savedTodoItems.[]', 'hiddenCompleted', function () {
-    const items = this.savedTodoItems;
-    if (this.hiddenCompleted) {
-      return items.filterBy('isCompleted', false);
-    } else {
-      return items;
+  savedTodoItems: computed.filterBy('todoItems', 'isNew', false),
+  listedTodoItems: computed(
+    'savedTodoItems.[]',
+    'hiddenCompleted',
+    function () {
+      const items = this.savedTodoItems;
+      if (this.hiddenCompleted) {
+        return items.filterBy('isCompleted', false);
+      } else {
+        return items;
+      }
     }
-  }),
+  ),
   buildingTodoItem: computed('todoItems.@each.isNew', function () {
     return this.todoItems.filterBy('isNew', true).get('firstObject');
   }),
   editingTodoItem: null,
   hiddenCompleted: false,
   hidignCompleted: false,
-  hiddenOrHidingCompleted: computed('hiddenCompleted', 'hidingCompleted', function () {
-    return this.hiddenCompleted || this.hidingCompleted;
-  }),
+  hiddenOrHidingCompleted: computed.or('hiddenCompleted', 'hidingCompleted'),
 
   @action
-  build () {
-    const buildingRecord = this.todoItems.filterBy('isNew', true).get('firstObject');
+  build() {
+    const buildingRecord = this.todoItems
+      .filterBy('isNew', true)
+      .get('firstObject');
 
     if (buildingRecord) {
       this.set('editingTodoItem', buildingRecord);
@@ -40,32 +42,33 @@ export default Controller.extend({
   },
 
   @action
-  edit (item) {
+  edit(item) {
     this.set('editingTodoItem', item);
   },
 
   @action
-  toggleHiddenCompletedItems () {
-
-    if (this.hiddenCompleted) { // to Show
+  toggleHiddenCompletedItems() {
+    if (this.hiddenCompleted) {
+      // to Show
       this.set('hiddenCompleted', false);
-    } else { // to Hide
+    } else {
+      // to Hide
       this.set('hidingCompleted', true);
       const targetItems = document.querySelectorAll('.p-todo-item__completed');
       const hidingClass = 'p-todo-item--hiding';
 
-      targetItems.forEach(item => item.classList.add(hidingClass));
+      targetItems.forEach((item) => item.classList.add(hidingClass));
       later(() => {
         this.set('hiddenCompleted', true);
         this.set('hidingCompleted', false);
-        targetItems.forEach(item => item.classList.remove(hidingClass));
+        targetItems.forEach((item) => item.classList.remove(hidingClass));
       }, 300);
     }
   },
 
   @action
-  deleteCompletedItems () {
+  deleteCompletedItems() {
     const completedItems = this.savedTodoItems.filterBy('isCompleted', true);
-    completedItems.forEach(item => item.destroyRecord());
-  }
+    completedItems.forEach((item) => item.destroyRecord());
+  },
 });
