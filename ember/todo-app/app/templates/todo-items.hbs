@@ -9,4 +9,4 @@
     <TodoItem @item={{todoItem}} @setEditingRecord={{this.edit}} />
   {{/each}}
 </ul>
-<TodoItem::FormModal @item={{this.editingTodoItem}} />
+<TodoItem::FormModal @item={{this.editingTodoItem}} @close={{this.closeEditingModal}} />

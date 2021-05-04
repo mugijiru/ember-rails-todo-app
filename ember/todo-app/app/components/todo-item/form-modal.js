@@ -1,56 +1,36 @@
-import { computed, observer, action } from '@ember/object';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  item: null,
-  isOpen: false,
+export default class TodoItemFormModal extends Component {
+  get item() { return this.args.item ?? null }
+  get isOpen() { return Boolean(this.item) }
 
-  title: computed('item.isNew', function () {
-    const mode = this.get('item.isNew') ? 'New' : 'Edit';
-    return `${mode} TODO`;
-  }),
+  get title() {
+    if (!this.item) { return '' }
+    const mode = this.item.isNew ? 'New' : 'Edit'
+    return `${mode} TODO`
+  }
 
-  style: computed('item', function () {
+  get style () {
     const display = this.item ? 'block' : 'none';
     return `display: ${display};`;
-  }),
-
-  // データがセットされたのを検知してモーダルを開いているので observer を使用する
-  // eslint-disable-next-line ember/no-observers
-  enabled: observer('item', function () {
-    if (this.item) {
-      this.open();
-    }
-  }),
-
-  open() {
-    this.set('isOpen', true);
-  },
-
-  close() {
-    this.set('isOpen', false);
-  },
+  }
 
   @action
   cancel() {
     const item = this.item;
-    if (item) {
-      item.deleteRecord();
-    }
-    this.close();
+    if (item) { item.deleteRecord() }
+    this.args.close();
     return false;
-  },
+  }
 
   @action
   save() {
     this.item
       .save()
-      .then(() => {
-        this.close();
-      })
-      .catch(function () {
-        alert('System Error!');
-      });
-    return false;
-  },
-});
+      .then(() => { this.args.close() })
+      .catch(() => { alert('System Error!') })
+    return false
+  }
+}

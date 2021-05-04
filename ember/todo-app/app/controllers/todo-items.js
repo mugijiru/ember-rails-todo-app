@@ -47,6 +47,11 @@ export default Controller.extend({
   },
 
   @action
+  closeEditingModal() {
+    this.set('editingTodoItem', null);
+  },
+
+  @action
   toggleHiddenCompletedItems() {
     if (this.hiddenCompleted) {
       // to Show
