@@ -42,9 +42,7 @@ export default Component.extend({
   },
 
   @action
-  save (event) {
-    event.preventDefault();
-
+  save () {
     this.item.save().then(() => {
       this.close();
     }).catch(function () {

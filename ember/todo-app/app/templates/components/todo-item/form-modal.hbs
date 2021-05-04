@@ -14,8 +14,8 @@
       </div>
     </modal.body>
     <modal.footer>
-      <MgButton @text="Cancel" {{on "click" this.cancel}} />
-      <MgButton @text="Save" @isPrimary={{true}} {{on "click" this.save}} />
+      <MgButton @text="Cancel" @onClick={{this.cancel}} />
+      <MgButton @text="Save" @isPrimary={{true}} @onClick={{this.save}} />
     </modal.footer>
   </form>
 </BsModal>
