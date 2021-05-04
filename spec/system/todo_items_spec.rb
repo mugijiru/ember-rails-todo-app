@@ -20,6 +20,23 @@ RSpec.describe 'Todo Items', type: :system do
     expect(page).to have_content 'TODO item 10'
   end
 
+  it 'hide comopleted todo items when switched hidden' do
+    create_list(:todo_item, 5, user: @user, name: "Completed Todo Item", is_completed: true)
+    create_list(:todo_item, 5, user: @user)
+
+    visit '/todo_items'
+
+    aggregate_failures do
+      expect(page).to have_content('Completed Todo Item', count: 5)
+      expect(page).to have_css('.p-todo-item', count: 10)
+
+      find('.c-toggle-switch').click
+
+      expect(page).not_to have_content('Completed Todo Item')
+      expect(page).to have_css('.p-todo-item', count: 5)
+    end
+  end
+
   it 'can create new todo item' do
     create_list(:todo_item, 10, user: @user)
 
