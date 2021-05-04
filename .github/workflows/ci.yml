@@ -49,6 +49,7 @@ jobs:
       run: |
         cd ember/todo-app
         yarn
+        yarn run ember build
 
     - name: Setup Code Climate test-reporter
       run: |
