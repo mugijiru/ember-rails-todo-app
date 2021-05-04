@@ -32,9 +32,7 @@ export default Component.extend({
   },
 
   @action
-  cancel (event) {
-    event.preventDefault();
-
+  cancel () {
     const item = this.item;
     if (item) { item.deleteRecord(); }
     this.close();
