@@ -26,7 +26,7 @@ export default class TodoItems extends Controller {
     return this.hiddenCompleted ? this.incompleteItems : this.savedTodoItems
   }
 
-  get buildingTodoItem () {
+  get buildingTodoItem() {
     return this.todoItems.filterBy('isNew', true).firstObject
   }
 
@@ -44,10 +44,14 @@ export default class TodoItems extends Controller {
   }
 
   @action
-  edit(item) { this.editingTodoItem = item }
+  edit(item) {
+    this.editingTodoItem = item
+  }
 
   @action
-  closeEditingModal() { this.editingTodoItem = null }
+  closeEditingModal() {
+    this.editingTodoItem = null
+  }
 
   @action
   toggleHiddenCompletedItems() {

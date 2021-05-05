@@ -6,23 +6,33 @@ import { computed, action } from '@ember/object';
 export default class TodoItem extends Component {
   @tracked isShowing = false
 
-  constructor () {
+  constructor() {
     super(...arguments)
     this.isShowing = true
-    later(() => { this.isShowing = false }, 10)
+    later(() => {
+      this.isShowing = false
+    }, 10)
   }
 
-  get item() { return this.args.item ?? null }
+  get item() {
+    return this.args.item ?? null
+  }
 
   get isCompleted() {
-    if (!this.item) { return false }
+    if (!this.item) {
+      return false
+    }
     return this.item.isCompleted
   }
 
   get classNamesString() {
     const classList = ['p-todo-item']
-    if (this.isCompleted) { classList.push('p-todo-item__completed') }
-    if (this.isShowing) { classList.push('p-todo-item--showing-enter') }
+    if (this.isCompleted) {
+      classList.push('p-todo-item__completed')
+    }
+    if (this.isShowing) {
+      classList.push('p-todo-item--showing-enter')
+    }
     return classList.join(' ')
   }
 
