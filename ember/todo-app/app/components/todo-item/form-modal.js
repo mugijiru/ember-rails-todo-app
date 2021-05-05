@@ -11,9 +11,9 @@ export default class TodoItemFormModal extends Component {
     return `${mode} TODO`
   }
 
-  get style () {
-    const display = this.item ? 'block' : 'none';
-    return `display: ${display};`;
+  get style() {
+    const display = this.item ? 'block' : 'none'
+    return `display: ${display};`
   }
 
   @action

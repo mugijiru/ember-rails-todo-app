@@ -28,19 +28,19 @@ export default class TodoItem extends Component {
 
   @action
   toggle() {
-    const item = this.item;
-    item.set('isCompleted', !item.get('isCompleted'));
-    item.save();
+    const item = this.item
+    item.set('isCompleted', !item.get('isCompleted'))
+    item.save()
   }
 
   @action
   edit() {
-    const item = this.item;
-    this.args.setEditingRecord(item);
+    const item = this.item
+    this.args.setEditingRecord(item)
   }
 
   @action
   delete() {
-    this.item.destroyRecord();
+    this.item.destroyRecord()
   }
 }

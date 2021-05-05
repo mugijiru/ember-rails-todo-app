@@ -34,7 +34,7 @@ export default class TodoItems extends Controller {
   build() {
     const buildingRecord = this.todoItems
       .filterBy('isNew', true)
-      .get('firstObject');
+      .get('firstObject')
 
     if (buildingRecord) {
       this.set('editingTodoItem', buildingRecord);
@@ -57,21 +57,21 @@ export default class TodoItems extends Controller {
     } else {
       // to Hide
       this.hidingCompleted = true
-      const targetItems = document.querySelectorAll('.p-todo-item__completed');
-      const hidingClass = 'p-todo-item--hiding';
+      const targetItems = document.querySelectorAll('.p-todo-item__completed')
+      const hidingClass = 'p-todo-item--hiding'
 
-      targetItems.forEach((item) => item.classList.add(hidingClass));
+      targetItems.forEach((item) => item.classList.add(hidingClass))
       later(() => {
         this.hiddenCompleted = true
         this.hidingCompleted = false
-        targetItems.forEach((item) => item.classList.remove(hidingClass));
-      }, 300);
+        targetItems.forEach((item) => item.classList.remove(hidingClass))
+      }, 300)
     }
   }
 
   @action
   deleteCompletedItems() {
-    const completedItems = this.savedTodoItems.filterBy('isCompleted', true);
-    completedItems.forEach((item) => item.destroyRecord());
+    const completedItems = this.savedTodoItems.filterBy('isCompleted', true)
+    completedItems.forEach((item) => item.destroyRecord())
   }
 }
