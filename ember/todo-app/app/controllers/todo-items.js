@@ -36,11 +36,8 @@ export default class TodoItems extends Controller {
       .filterBy('isNew', true)
       .get('firstObject')
 
-    if (buildingRecord) {
-      this.set('editingTodoItem', buildingRecord);
-    } else {
-      this.set('editingTodoItem', this.store.createRecord('todo-item'));
-    }
+    this.editingTodoItem =
+      buildingRecord ?? this.store.createRecord('todo-item')
   }
 
   @action
