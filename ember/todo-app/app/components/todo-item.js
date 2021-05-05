@@ -39,7 +39,7 @@ export default class TodoItem extends Component {
   @action
   toggle() {
     const item = this.item
-    item.set('isCompleted', !item.get('isCompleted'))
+    item.isCompleted = !item.isCompleted
     item.save()
   }
 
