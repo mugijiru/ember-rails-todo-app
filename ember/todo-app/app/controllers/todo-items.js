@@ -1,8 +1,7 @@
-import { later } from '@ember/runloop';
-import { computed, action } from '@ember/object';
-import { alias, filterBy, or } from '@ember/object/computed';
-import { inject as service } from '@ember/service';
-import Controller from '@ember/controller';
+import { later } from '@ember/runloop'
+import { action } from '@ember/object'
+import { inject as service } from '@ember/service'
+import Controller from '@ember/controller'
 import { tracked } from '@glimmer/tracking'
 
 export default class TodoItems extends Controller {
@@ -10,9 +9,18 @@ export default class TodoItems extends Controller {
   @tracked hiddenCompleted = false
   @tracked hidingCompleted = false
   @service store
-  @filterBy('todoItems', 'isNew', false) savedTodoItems
-  @filterBy('savedTodoItems', 'isCompleted', false) incompleteItems
-  @or('hiddenCompleted', 'hidingCompleted') hiddenOrHidingCompleted
+
+  get savedTodoItems() {
+    return this.todoItems.filterBy('isNew', false)
+  }
+
+  get incompleteItems() {
+    return this.savedTodoItems.filterBy('isCompleted', false)
+  }
+
+  get hiddenOrHidingCompleted() {
+    return this.hiddenCompleted || this.hidingCompleted
+  }
 
   get listedTodoItems() {
     return this.hiddenCompleted ? this.incompleteItems : this.savedTodoItems
