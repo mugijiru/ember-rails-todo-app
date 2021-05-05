@@ -3,6 +3,8 @@
   grid-template-row: auto 25px;
   grid-template-columns: auto 50px auto;
   gap: 4px;
+  background-color: transparent;
+  border: 0;
 
   &--enabled &__switch::before {
     transform: scaleX(1);
