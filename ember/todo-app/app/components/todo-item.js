@@ -1,7 +1,7 @@
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { later } from '@ember/runloop';
-import { computed, action } from '@ember/object';
+import Component from '@glimmer/component'
+import { tracked } from '@glimmer/tracking'
+import { later } from '@ember/runloop'
+import { action } from '@ember/object'
 
 export default class TodoItem extends Component {
   @tracked isShowing = false
