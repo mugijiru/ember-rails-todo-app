@@ -30,7 +30,6 @@
     "@ember/test-helpers": "^2.2.5",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "active-model-adapter": "^2.2.0",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^3.4.1",
     "broccoli-asset-rev": "^3.0.0",
