@@ -2,3 +2,14 @@ inherit_from: .rubocop_todo.yml
 
 require:
   - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 5.2
+  Exclude:
+    - "bin/**/*"
+    - "vendor/**/*"
+    - "node_modules/**/*"
+    - "db/schema.rb"
+    - "ember/**/*"
+    - "doc"
