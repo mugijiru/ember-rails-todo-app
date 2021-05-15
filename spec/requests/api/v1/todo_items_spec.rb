@@ -23,7 +23,7 @@ RSpec.describe '/todo_items', type: :request do
       create(:todo_item, name: 'valid name', user: @user)
       get '/api/v1/todo_items'
       json = JSON.parse(response.body)
-      expect(json['todo_items'][0]['name']).to eq 'valid name'
+      expect(json['data'][0]['attributes']['name']).to eq 'valid name'
     end
   end
 
@@ -31,12 +31,12 @@ RSpec.describe '/todo_items', type: :request do
     context 'with valid parameters' do
       it 'creates a new TodoItem' do
         expect {
-          post '/api/v1/todo_items', params: { todo_item: { name: 'valid name' } }
+          post '/api/v1/todo_items', params: { data: { type: 'todo-items', attributes: { name: 'valid name' } } }
         }.to change(TodoItem, :count).by(1)
       end
 
-      it 'response statis is 201(created)' do
-        post '/api/v1/todo_items', params: { todo_item: { name: 'valid name' } }
+      it 'response status is 201(created)' do
+        post '/api/v1/todo_items', params: { data: { type: 'todo-items', attributes: { name: 'valid name' } } }
         expect(response.status).to eq(201)
       end
     end
@@ -44,12 +44,12 @@ RSpec.describe '/todo_items', type: :request do
     context 'with invalid parameters' do
       it 'does not create a new TodoItem' do
         expect {
-          post '/api/v1/todo_items', params: { todo_item: { name: nil } }
+          post '/api/v1/todo_items', params: { data: { type: 'todo-items', attributes: { name: nil } } }
         }.to change(TodoItem, :count).by(0)
       end
 
-      it "response status is 422(unprocessable entity)" do
-        post '/api/v1/todo_items', params: { todo_item: { name: nil } }
+      it 'response status is 422(unprocessable entity)' do
+        post '/api/v1/todo_items', params: { data: { type: 'todo-items', attributes: { name: nil } } }
         expect(response.status).to eq(422)
       end
     end
@@ -59,14 +59,14 @@ RSpec.describe '/todo_items', type: :request do
     context 'with valid parameters' do
       it 'updates the requested todo_item' do
         todo_item = create(:todo_item, name: 'existing item', user: @user)
-        patch "/api/v1/todo_items/#{todo_item.id}", params: { todo_item: { name: 'edited name' } }
+        patch "/api/v1/todo_items/#{todo_item.id}", params: { data: { type: 'todo-items', attributes: { name: 'edited name' } } }
         todo_item.reload
         expect(todo_item.name).to eq('edited name')
       end
 
       it 'response status is 200(ok)' do
         todo_item = create(:todo_item, name: 'existing item', user: @user)
-        patch "/api/v1/todo_items/#{todo_item.id}", params: { todo_item: { name: 'edited name'} }
+        patch "/api/v1/todo_items/#{todo_item.id}", params: { data: { type: 'todo-items', attributes: { name: 'edited name' } } }
         expect(response.status).to eq(200)
       end
     end
@@ -74,7 +74,7 @@ RSpec.describe '/todo_items', type: :request do
     context 'with invalid parameters' do
       it 'response status is 422(unprocessable entity)' do
         todo_item = create(:todo_item, name: 'TODO item', user: @user)
-        patch "/api/v1/todo_items/#{todo_item.id}", params: { todo_item: { name: nil } }
+        patch "/api/v1/todo_items/#{todo_item.id}", params: { data: { type: 'todo-items', attributes: { name: nil } } }
         expect(response.status).to eq(422)
       end
     end
