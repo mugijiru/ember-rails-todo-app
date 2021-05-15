@@ -11,7 +11,7 @@ class Api::V1::TodoItemsController < ApplicationController
     todo_item.attributes = todo_item_params
     todo_item.save!
     render jsonapi: todo_item, status: :created, serializer: TodoItemSerializer
-  rescue
+  rescue StandardError
     render jsonapi: todo_item.errors, status: :unprocessable_entity
   end
 
@@ -19,7 +19,7 @@ class Api::V1::TodoItemsController < ApplicationController
     todo_item = TodoItem.where(user_id: current_user.id).find(params[:id])
     todo_item.update!(todo_item_params)
     render jsonapi: todo_item, serializer: TodoItemSerializer
-  rescue
+  rescue StandardError
     render jsonapi: todo_item.errors, status: :unprocessable_entity
   end
 
