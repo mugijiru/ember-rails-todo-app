@@ -27,3 +27,12 @@ services:
       - .:/app
     ports:
       - "3000:3000"
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 8080:8080
+    volumes:
+      - ./doc:/doc
+    environment:
+      SWAGGER_JSON: /doc/openapi.yml

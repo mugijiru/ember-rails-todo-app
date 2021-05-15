@@ -1,0 +1,118 @@
+openapi: 3.0.3
+
+info:
+  title: Todo App API
+  version: '1'
+
+servers:
+  - url: http://localhost:3000/{api_version}
+    description: local server
+    variables:
+      api_version:
+        default: 'v1'
+        enum:
+          - 'v1'
+
+components:
+  schemas:
+    TodoItem:
+      type: object
+      description: Todo item
+      required:
+        - type
+        - attributes
+      properties:
+        id:
+          type: string
+          description: id
+          format: int32
+          readOnly: true
+        type:
+          type: string
+          description: data type
+        attributes:
+          type: object
+          required:
+            - name
+            - body
+          properties:
+            name:
+              type: string
+              description: todo item name
+            body:
+              type: string
+              nullable: true
+              description: todo item description
+            is_completed:
+              type: boolean
+              nullable: true
+
+paths:
+  /todo_items:
+    get:
+      tags:
+        - TodoItem
+      responses:
+        '200':
+          description: ok
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/TodoItem"
+    post:
+      tags:
+        - TodoItem
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/TodoItem"
+      responses:
+        '201':
+          description: created
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/TodoItem"
+  /todo_items/{id}:
+    patch:
+      tags:
+        - TodoItem
+      parameters:
+        - in: path
+          name: id
+          required: true
+          style: simple
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/TodoItem"
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/vnd.api+json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: "#/components/schemas/TodoItem"
