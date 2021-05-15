@@ -1,7 +1,12 @@
-// Override the default adapter with the `DS.ActiveModelAdapter` which
-// is built to work nicely with the ActiveModel::Serializers gem.
-import ActiveModelAdapter from 'active-model-adapter'
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import { underscore } from '@ember/string';
+import { pluralize } from 'ember-inflector';
 
-export default ActiveModelAdapter.extend({
-  namespace: 'api/v1',
-})
+export default class ApplicationAdapter extends JSONAPIAdapter {
+  namespace = 'api/v1';
+
+  pathForType(type) {
+    const underscored = underscore(type);
+    return pluralize(underscored);
+  }
+}

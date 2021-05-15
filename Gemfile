@@ -38,7 +38,7 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
 gem 'ember-cli-rails'
-gem 'active_model_serializers', '~> 0.9.0'
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'sprockets', '~> 3.7.2'
 
 group :development, :test do
