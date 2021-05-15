@@ -70,7 +70,6 @@ paths:
       requestBody:
         required: true
         content:
-          # 本当は application/vnd.api+json だが committee を通すため application/json にしている
           application/vnd.api+json:
             schema:
               type: object
