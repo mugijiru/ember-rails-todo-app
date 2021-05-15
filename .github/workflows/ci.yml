@@ -69,12 +69,19 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
         DISPLAY: ':99'
       run: |
-        bundle exec rspec
+        bundle exec rspec -f j -o tmp/rspec_results.json -f p
 
     - name: CodeClimate afterbuild
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
       run: ./cc-test-reporter after-build
+
+    - name: Report RSpec result
+      uses: SonicGarden/rspec-report-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        json-path: tmp/rspec_results.json
+      if: always()
 
     - name: Notify slack build result
       uses: homoluctus/slatify@master
