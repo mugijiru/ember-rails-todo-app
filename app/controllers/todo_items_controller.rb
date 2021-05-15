@@ -1,5 +1,4 @@
 class TodoItemsController < ApplicationController
   # GET /todo_items
-  def index
-  end
+  def index; end
 end
