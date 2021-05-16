@@ -1,0 +1,25 @@
+name: ReviewDog
+
+on:
+  pull_request:
+
+jobs:
+  reviewdog:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: rubocop
+      uses: reviewdog/action-rubocop@v1
+      with:
+        rubocop_version: gemfile
+        rubocop_flags: -a
+        rubocop_extensions: rubocop-rails:gemfile
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: github-pr-review
