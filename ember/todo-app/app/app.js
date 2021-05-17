@@ -4,7 +4,7 @@ import loadInitializers from 'ember-load-initializers'
 import config from 'todo-app/config/environment'
 
 export default class App extends Application {
-  rootElement = "#todo-app"
+  rootElement = '#todo-app'
   modulePrefix = config.modulePrefix
   podModulePrefix = config.podModulePrefix
   Resolver = Resolver
