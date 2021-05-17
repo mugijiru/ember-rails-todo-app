@@ -76,7 +76,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: |
         cd ember/todo-app
-        yarn run eslint -f rdjson . --fix | reviewdog -f=rdjson -reporter=github-pr-review
+        yarn --silent run eslint -f rdjson . --fix | reviewdog -f=rdjson -reporter=github-pr-review
 
     - name: Notify slack build result
       uses: lazy-actions/slatify@master
