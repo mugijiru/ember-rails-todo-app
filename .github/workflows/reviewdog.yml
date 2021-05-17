@@ -58,17 +58,12 @@ jobs:
     - name: install ember-cli
       run: yarn global add ember-cli
 
-    - name: Setup Ember.js App
+    - name: Setup Ember.js App and eslint formatter
       env:
         NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: |
         cd ember/todo-app
         yarn
-        yarn add eslint-formatter-rdjson -D
-
-    - name: Add formatter
-      run: |
-        cd ember/todo-app
         yarn add eslint-formatter-rdjson -D
 
     - name: Run reviewdog
