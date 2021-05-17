@@ -9,8 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Use ruby
       uses: ruby/setup-ruby@v1
@@ -47,8 +45,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
 
     - uses: reviewdog/action-setup@v1
       with:
