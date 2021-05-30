@@ -84,7 +84,7 @@ jobs:
       if: always()
 
     - name: Notify slack build result
-      uses: homoluctus/slatify@master
+      uses: lazy-actions/slatify@master
       if: always()
       with:
           type: ${{ job.status }}
