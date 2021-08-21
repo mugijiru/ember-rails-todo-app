@@ -26,7 +26,7 @@ RSpec.describe '/todo_items', type: :request do
       get '/api/v1/todo_items'
       json = JSON.parse(response.body)
       expect(json['data'][0]['attributes']['name']).to eq 'valid name'
-      assert_response_schema_confirm
+      assert_response_schema_confirm(200)
     end
   end
 
@@ -37,12 +37,7 @@ RSpec.describe '/todo_items', type: :request do
           post '/api/v1/todo_items', headers: request_headers, params: generate_params
         }.to change(TodoItem, :count).by(1)
         assert_request_schema_confirm
-        assert_response_schema_confirm
-      end
-
-      it 'response status is 201(created)' do
-        post '/api/v1/todo_items', headers: request_headers, params: generate_params
-        expect(response.status).to eq(201)
+        assert_response_schema_confirm(201)
       end
     end
 
@@ -76,15 +71,7 @@ RSpec.describe '/todo_items', type: :request do
         expect(todo_item.name).to eq('edited name')
 
         assert_request_schema_confirm
-        assert_response_schema_confirm
-      end
-
-      it 'response status is 200(ok)' do
-        todo_item = create(:todo_item, name: 'existing item', user: @user)
-        patch "/api/v1/todo_items/#{todo_item.id}",
-              headers: request_headers,
-              params: generate_params(name: 'edited name')
-        expect(response.status).to eq(200)
+        assert_response_schema_confirm(200)
       end
     end
 
