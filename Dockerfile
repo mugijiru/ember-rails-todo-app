@@ -1,4 +1,4 @@
-FROM ruby:2.6.7
+FROM ruby:2.7.4
 
 # install Chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -23,6 +23,8 @@ COPY . /app
 
 RUN bundle config app_config .bundle
 RUN bundle config path vendor/bundle
+
+RUN gem install bundler -v 2.2.26
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
