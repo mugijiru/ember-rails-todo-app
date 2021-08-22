@@ -7,26 +7,13 @@
 まず始めに ember-rails で作られ、そこから ember-cli-rails への移行を経た TODO アプリです。
 ember-rails から ember-cli-rails への移行例として作成されています。
 
-# 注意
-
-`ember-rails` がサポートしている Ember.js のバージョンは 2.18 までとなっています。
-
-こちらのアプリの main ブランチでは既に `ember-rails` は利用していませんが、
-`ember-cli-rails` への移行を実演するのが目的であるため
-`ember-rails` を利用して実装をしていました。
-そして `ember-cli-rails` への移行を済ませた後も未だに 2.18 を利用しています。
-
-2.18 はもう Ember.js 自体のメンテナンス対象から外されているので
-セキュリティ上の問題などを抱えているかもしれません。
-そのため公開サーバへのデプロイはお控えください。
-
 # Requirements
 
 * Ruby version
-  * 2.6.6
+  * 2.7.4
 
 * Rails version
-  * 5.2.5
+  * 6.0.4
 
 * System dependencies
   * MySQL 5.6 or later
@@ -44,8 +31,4 @@ ember-rails から ember-cli-rails への移行例として作成されていま
 
 # Deploy について
 
-動作する Ember.js のバージョンが 2.18 であり
-サポート切れのバージョンであるため
-一般公開しないでください。
-
-開発者も公開する気がないためデプロイ手段は用意していません。
+開発者も公開する気がなかったので未だデプロイ手段は用意していません。
