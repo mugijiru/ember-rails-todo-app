@@ -53,8 +53,7 @@ docker-compose -f docker-compose.dev.yml up --remove-orphans mysql
 
 ### bin/setup の実行
 
-bin/setup を実行することで Gem, NPM Package, DB 構築などが行われます
-
+bin/setup を実行することで Gem, NPM Package, DB 構築、開発用初期データ投入などが行われます
 
 ```
 docker-compose -f docker-compose.dev.yml run --rm rails bin/setup
@@ -94,6 +93,21 @@ docker-compose -f docker-compose.dev.yml up --remove-orphans
 * WebDriver Chrome
   * `docker-compose -f docker-compose.dev.yml up --remove-orphans webdriver_chrome`
   * WebDriver Chrome を起動しておけば system spec のテストが実行できます。
+
+## 開発用の初期ユーザー
+
+開発環境用では、
+以下の情報でログインできるユーザーを標準で用意しています。
+
+* email
+  * `foo@example.com`
+* password
+  * `password`
+
+このユーザーの TODO Item も用意されているので
+初期の動作検証にご利用ください。
+
+また、他のユーザーも作成可能です。
 
 ## テストの実行
 
