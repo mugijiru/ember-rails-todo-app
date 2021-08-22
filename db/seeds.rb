@@ -1,2 +1,2 @@
-filepath = Rails.root.join( 'db', 'seeds', "#{Rails.env.downcase}.rb")
+filepath = Rails.root.join('db', 'seeds', "#{Rails.env.downcase}.rb")
 load(filepath) if File.exists?(filepath)
