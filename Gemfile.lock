@@ -91,6 +91,7 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    brakeman (5.1.1)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.35.3)
@@ -338,6 +339,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap (>= 1.1.0)
   bootstrap-sass (~> 3.4.1)
+  brakeman
   byebug
   capybara
   codeclimate-test-reporter
