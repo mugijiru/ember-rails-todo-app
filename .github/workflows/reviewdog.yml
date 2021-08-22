@@ -30,7 +30,7 @@ jobs:
       if: always()
       with:
           type: ${{ job.status }}
-          job_name: '*ReviewDog*'
+          job_name: '*ReviewDog Rubocop*'
           mention: 'here'
           username: 'GitHub Actions'
           icon_emoji: 'dog'
@@ -104,7 +104,7 @@ jobs:
       if: always()
       with:
           type: ${{ job.status }}
-          job_name: '*ReviewDog*'
+          job_name: '*ReviewDog eslint*'
           mention: 'here'
           username: 'GitHub Actions'
           icon_emoji: 'dog'
