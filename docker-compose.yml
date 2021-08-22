@@ -19,7 +19,9 @@ services:
       - 4444:4444
 
   rails:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     environment:
       SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
