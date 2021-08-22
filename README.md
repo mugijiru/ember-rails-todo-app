@@ -22,13 +22,6 @@ ember-rails から ember-cli-rails への移行例として作成されていま
 
 Docker を前提にした環境構築について記載します。
 
-## Docker 環境構築
-
-以下のコマンドで build する
-
-```
-docker-compose -f docker-compose.dev.yml build
-```
 ## NPM_TOKEN の設定
 
 GitHub に登録している repository から NPM Package をインストールするので必要になります。
@@ -36,6 +29,14 @@ GitHub に登録している repository から NPM Package をインストール
 1. `cp .env.sample .env`
 2. GitHub の PAT を取得
 3. .env を開き NPM_TOKEN のダミーの値を GitHub の PAT に差し替え
+
+## Docker 環境構築
+
+以下のコマンドで build する
+
+```
+docker-compose -f docker-compose.dev.yml build
+```
 
 ## Rails 環境構築
 
