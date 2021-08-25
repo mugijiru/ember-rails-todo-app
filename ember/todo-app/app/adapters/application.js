@@ -11,6 +11,7 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
   }
 
   headers = {
-    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    // test 環境では CSRF Token は吐かれないので ?. で逃げる
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
   }
 }
