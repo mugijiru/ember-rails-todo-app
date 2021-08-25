@@ -9,4 +9,8 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
     const underscored = underscore(type);
     return pluralize(underscored);
   }
+
+  headers = {
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+  }
 }
