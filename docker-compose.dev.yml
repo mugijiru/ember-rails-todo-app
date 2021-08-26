@@ -11,12 +11,13 @@ services:
       - ./db/mysql:/var/lib/mysql
 
   webdriver_chrome:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome-debug
     environment:
-      START_XVFB: 'false'
+      START_XVFB: '${USE_XVFB}'
     shm_size: '2g'
     ports:
       - 4444:4444
+      - 5900:5900
 
   rails:
     build:
