@@ -5140,10 +5140,9 @@ ember-cli-preprocess-registry@^3.3.0:
     debug "^3.0.1"
     process-relative-require "^1.0.0"
 
-ember-cli-rails-addon@^0.10.0:
+"ember-cli-rails-addon@https://github.com/rondale-sc/ember-cli-rails-addon.git#3faaa5e9e1d88df07cdee62273f26d8d6aa978df":
   version "0.10.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-rails-addon/-/ember-cli-rails-addon-0.10.0.tgz#cf1089aecf08e257b17ddf89650759f6e1f98399"
-  integrity sha512-I/n/WyYO133SvQ56q3w9ISFp91phjdFpgMZ3PZ4Jb76lbulxhJjIAU5usv9cZ/in732+ccM1yGdimATbVVS7uw==
+  resolved "https://github.com/rondale-sc/ember-cli-rails-addon.git#3faaa5e9e1d88df07cdee62273f26d8d6aa978df"
 
 ember-cli-sri@^2.1.1:
   version "2.1.1"

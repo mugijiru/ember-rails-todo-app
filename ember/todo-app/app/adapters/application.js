@@ -9,4 +9,11 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
     const underscored = underscore(type);
     return pluralize(underscored);
   }
+
+  headers = {
+    // test 環境では CSRF Token は吐かれないので ?. で逃げる
+    'X-CSRF-Token': document
+      .querySelector('meta[name="csrf-token"]')
+      ?.getAttribute('content'),
+  }
 }
