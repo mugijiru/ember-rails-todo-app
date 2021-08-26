@@ -16,13 +16,11 @@ else
 
   Capybara.register_driver :remote_chrome do |app|
     url = ENV.fetch('SELENIUM_REMOTE_URL')
+    args = ['no-sandbox', 'disable-gpu']
+    args.push('headless') unless ENV.fetch('USE_XVFB') == 'true'
     caps = ::Selenium::WebDriver::Remote::Capabilities.chrome(
       'goog:chromeOptions' => {
-        'args' => [
-          'no-sandbox',
-          'headless',
-          'disable-gpu'
-        ]
+        'args' => args
       }
     )
     Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)

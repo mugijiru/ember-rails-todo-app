@@ -11,12 +11,13 @@ services:
       - ./db/mysql:/var/lib/mysql
 
   webdriver_chrome:
-    image: selenium/standalone-chrome
+    image: selenium/standalone-chrome-debug
     environment:
-      START_XVFB: 'false'
+      START_XVFB: '${USE_XVFB}'
     shm_size: '2g'
     ports:
       - 4444:4444
+      - 5900:5900
 
   rails:
     build:
@@ -24,6 +25,7 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       SELENIUM_REMOTE_URL: http://webdriver_chrome:4444/wd/hub
+      USE_XVFB: '${USE_XVFB}'
     env_file: .env
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
