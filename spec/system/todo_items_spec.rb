@@ -30,7 +30,7 @@ RSpec.describe 'Todo Items', type: :system do
       expect(page).to have_content('Completed Todo Item', count: 5)
       expect(page).to have_css('.p-todo-item', count: 10)
 
-      find('.c-toggle-switch').click
+      find('.mg-toggle-switch').click
 
       expect(page).not_to have_content('Completed Todo Item')
       expect(page).to have_css('.p-todo-item', count: 5)
