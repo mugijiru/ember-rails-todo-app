@@ -2,4 +2,4 @@
 
 module.exports = {
   extends: 'recommended',
-};
+}
