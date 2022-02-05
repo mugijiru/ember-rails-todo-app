@@ -33,7 +33,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'bootstrap-sass', '~> 3.4.1'
 gem 'devise'
 gem 'ember-cli-rails', github: 'thoughtbot/ember-cli-rails', ref: '1e56a03fb8437f52dfd450454c71cffda2981d66'
 gem 'ember-cli-rails-assets', github: 'seanpdoyle/ember-cli-rails-assets', branch: 'rely-on-engine-to-load-helper'

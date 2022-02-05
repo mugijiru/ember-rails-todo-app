@@ -1,9 +1,6 @@
-#header.l-header.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      = link_to root_path, class: "navbar-brand" do
-        Ember-rails TODO App
-    .collapse.navbar-collapse
-      .nav.navbar-nav.navbar-right
-        - if user_signed_in?
-          = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn'
+%nav#header.l-header
+  = link_to root_path, class: "l-header__brand" do
+    Ember-rails TODO App
+  .l-header__actions
+    - if user_signed_in?
+      = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default'

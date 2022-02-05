@@ -82,15 +82,10 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
-    autoprefixer-rails (10.4.2.0)
-      execjs (~> 2)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.10.3)
       msgpack (~> 1.2)
-    bootstrap-sass (3.4.1)
-      autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
     brakeman (5.2.1)
     builder (3.2.4)
     bullet (7.0.1)
@@ -346,7 +341,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootsnap (>= 1.1.0)
-  bootstrap-sass (~> 3.4.1)
   brakeman
   bullet
   byebug

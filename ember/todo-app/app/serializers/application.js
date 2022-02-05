@@ -1,12 +1,12 @@
-import { underscore } from '@ember/string';
-import JSONAPISerializer from '@ember-data/serializer/json-api';
+import { underscore } from '@ember/string'
+import JSONAPISerializer from '@ember-data/serializer/json-api'
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   keyForAttribute(attr) {
-    return underscore(attr);
+    return underscore(attr)
   }
 
   keyForRelationship(rawKey) {
-    return underscore(rawKey);
+    return underscore(rawKey)
   }
 }
