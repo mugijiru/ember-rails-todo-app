@@ -1,0 +1,20 @@
+.l-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding: 0 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  &__brand {
+    display: block;
+    font-size: 24px;
+    color: #111;
+  }
+
+  &__actions {
+    justify-content: flex-end;
+    color: #111;
+  }
+}
