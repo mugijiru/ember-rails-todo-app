@@ -45,7 +45,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: brakeman
-      uses: reviewdog/action-brakeman@v1
+      uses: reviewdog/action-brakeman@v2
       with:
         brakeman_version: gemfile
         github_token: ${{ secrets.GITHUB_TOKEN }}
