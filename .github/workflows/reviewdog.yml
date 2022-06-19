@@ -44,8 +44,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7.4
     - name: brakeman
-      uses: reviewdog/action-brakeman@v1
+      uses: reviewdog/action-brakeman@v2
       with:
         brakeman_version: gemfile
         github_token: ${{ secrets.GITHUB_TOKEN }}
