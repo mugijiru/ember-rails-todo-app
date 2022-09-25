@@ -16,7 +16,7 @@ jobs:
         bundler-cache: true
 
     - name: rubocop
-      uses: reviewdog/action-rubocop@v1
+      uses: reviewdog/action-rubocop@v2
       with:
         rubocop_version: gemfile
         rubocop_flags: -a
@@ -79,7 +79,7 @@ jobs:
         reviewdog_version: latest
 
     - name: Use Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: 14.x
 
