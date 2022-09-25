@@ -15,7 +15,7 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Use ruby
       uses: ruby/setup-ruby@v1
@@ -23,10 +23,10 @@ jobs:
         bundler-cache: true
 
     - name: use-chromedriver
-      uses: nanasess/setup-chromedriver@master
+      uses: nanasess/setup-chromedriver@v1
 
     - name: Use Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: 14.x
 
@@ -77,7 +77,7 @@ jobs:
       run: ./cc-test-reporter after-build
 
     - name: Report RSpec result
-      uses: SonicGarden/rspec-report-action@v1
+      uses: SonicGarden/rspec-report-action@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         json-path: tmp/rspec_results.json
