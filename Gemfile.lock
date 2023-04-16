@@ -1,21 +1,3 @@
-GIT
-  remote: https://github.com/seanpdoyle/ember-cli-rails-assets.git
-  revision: 868f354822fa51d2052de28529c238413941adb9
-  branch: rely-on-engine-to-load-helper
-  specs:
-    ember-cli-rails-assets (0.6.2)
-
-GIT
-  remote: https://github.com/thoughtbot/ember-cli-rails.git
-  revision: 1e56a03fb8437f52dfd450454c71cffda2981d66
-  ref: 1e56a03fb8437f52dfd450454c71cffda2981d66
-  specs:
-    ember-cli-rails (0.11.0)
-      ember-cli-rails-assets (~> 0.6.2)
-      html_page (~> 0.1.0)
-      railties (>= 4.2)
-      terrapin (~> 0.6.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,6 +109,13 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    ember-cli-rails (0.12.1)
+      ember-cli-rails-assets (>= 0.6.2, < 1.0)
+      html_page (~> 0.1.0)
+      railties (>= 4.2)
+      terrapin (~> 0.6.0)
+    ember-cli-rails-assets (0.7.0)
+      nokogiri
     erubi (1.12.0)
     execjs (2.8.1)
     factory_bot (6.2.1)
@@ -364,8 +353,8 @@ DEPENDENCIES
   committee-rails
   database_rewinder
   devise
-  ember-cli-rails!
-  ember-cli-rails-assets!
+  ember-cli-rails
+  ember-cli-rails-assets
   factory_bot_rails
   faker
   hamlit-rails
