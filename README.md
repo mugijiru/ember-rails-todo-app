@@ -10,10 +10,10 @@ ember-rails から ember-cli-rails への移行例として作成されていま
 # Requirements
 
 * Ruby version
-  * 2.7.8
+  * 3.0.x
 
 * Rails version
-  * 6.0.4
+  * 6.0.x
 
 * System dependencies
   * MySQL 5.6 or later
