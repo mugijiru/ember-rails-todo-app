@@ -13,4 +13,13 @@ updates:
       time: "09:00"
       timezone: Asia/Tokyo
     versioning-strategy: lockfile-only
-    
+
+  - package-ecosystem: "bundler"
+    directory: "/"
+    target-branch: "main"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    versioning-strategy: "lockfile-only"
