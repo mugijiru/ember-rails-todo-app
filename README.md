@@ -10,7 +10,7 @@ ember-rails から ember-cli-rails への移行例として作成されていま
 # Requirements
 
 * Ruby version
-  * 2.7.4
+  * 2.7.8
 
 * Rails version
   * 6.0.4
