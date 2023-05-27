@@ -23,7 +23,7 @@ else
         'args' => args
       }
     )
-    Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)
+    Capybara::Selenium::Driver.new(app, browser: :remote, url: url, capabilities: caps)
   end
 
   RSpec.configure do |config|
