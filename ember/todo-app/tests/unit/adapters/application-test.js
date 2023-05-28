@@ -6,11 +6,11 @@ module('Unit | Adapter | application', function (hooks) {
 
   test('should namespace equal "api/v1"', function (assert) {
     const adapter = this.owner.lookup('adapter:application')
-    assert.equal(adapter.namespace, 'api/v1')
+    assert.strictEqual(adapter.namespace, 'api/v1')
   })
 
   test('pathForType でケバブケースはスネークケースにされた上に複数形にされる', function (assert) {
     const adapter = this.owner.lookup('adapter:application')
-    assert.equal(adapter.pathForType('kebab-case'), 'kebab_cases')
+    assert.strictEqual(adapter.pathForType('kebab-case'), 'kebab_cases')
   })
 })
