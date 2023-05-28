@@ -1,4 +1,3 @@
-import EmberObject from '@ember/object'
 import Service from '@ember/service'
 
 export default class CurrentUserService extends Service {
