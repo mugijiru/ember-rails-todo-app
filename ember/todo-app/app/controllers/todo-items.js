@@ -9,6 +9,7 @@ export default class TodoItems extends Controller {
   @tracked hiddenCompleted = false
   @tracked hidingCompleted = false
   @service store
+  @service currentUser
 
   get savedTodoItems() {
     return this.todoItems.filterBy('isNew', false)
