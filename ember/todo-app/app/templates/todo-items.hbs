@@ -1,4 +1,4 @@
-<h2>{{this.current-user.email}} さんのTODO List</h2>
+<h2>{{this.currentUser.email}} さんのTODO List</h2>
 <div class="p-todo-list__actions">
   <MgButton @text="Create" @onClick={{this.build}} />
   <MgButton @text="Delete Completed Items" @disabled={{this.hiddenOrHidingCompleted}} @isDanger={{true}} @onClick={{this.deleteCompletedItems}} />

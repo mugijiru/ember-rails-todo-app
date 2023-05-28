@@ -1,6 +1,6 @@
 import { later } from '@ember/runloop'
 import { action } from '@ember/object'
-import { inject as service } from '@ember/service'
+import { service } from '@ember/service'
 import Controller from '@ember/controller'
 import { tracked } from '@glimmer/tracking'
 
@@ -9,6 +9,7 @@ export default class TodoItems extends Controller {
   @tracked hiddenCompleted = false
   @tracked hidingCompleted = false
   @service store
+  @service currentUser
 
   get savedTodoItems() {
     return this.todoItems.filterBy('isNew', false)
