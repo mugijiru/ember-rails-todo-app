@@ -18,7 +18,7 @@ RUN yarn global add ember-cli-update
 RUN yarn global add ember-cli@4.1.1
 
 # install specific version bundler
-RUN gem install bundler -v 2.2.26
+RUN gem install bundler -v 2.4.13
 
 WORKDIR /app
 COPY . /app
