@@ -15,7 +15,7 @@ RUN apt-get update -qq && apt-get install -y nodejs yarn
 RUN yarn global add ember-cli-update
 
 # install ember-cli
-RUN yarn global add ember-cli@4.1.1
+RUN yarn global add ember-cli@4.12.1
 
 # install specific version bundler
 RUN gem install bundler -v 2.4.13
