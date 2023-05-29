@@ -17,6 +17,7 @@ AllCops:
     - "db/schema.rb"
     - "ember/**/*"
     - "doc"
+  NewCops: enable
 RSpec/ExampleLength:
   Enabled: false
 RSpec/MultipleExpectations:
