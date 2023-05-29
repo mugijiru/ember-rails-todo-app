@@ -53,7 +53,7 @@ RSpec.describe '/todo_items' do
              headers: request_headers,
              params: generate_params(name: nil)
 
-        expect(response.status).to eq(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -79,7 +79,7 @@ RSpec.describe '/todo_items' do
         patch "/api/v1/todo_items/#{todo_item.id}",
               headers: request_headers,
               params: generate_params(name: nil)
-        expect(response.status).to eq(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -95,7 +95,7 @@ RSpec.describe '/todo_items' do
     it 'response status is 204(no content)' do
       todo_item = create(:todo_item, name: 'TODO item', user: user)
       delete "/api/v1/todo_items/#{todo_item.id}"
-      expect(response.status).to eq(204)
+      expect(response).to have_http_status(:no_content)
     end
   end
 
