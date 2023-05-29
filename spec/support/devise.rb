@@ -3,7 +3,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :system
   config.include Warden::Test::Helpers, type: :routing
 
-  config.after(:each) do
+  config.after do
     Warden.test_reset!
   end
 end

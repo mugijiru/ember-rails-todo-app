@@ -1,8 +1,11 @@
 inherit_from: .rubocop_todo.yml
 
 require:
+  - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.0
@@ -14,3 +17,10 @@ AllCops:
     - "db/schema.rb"
     - "ember/**/*"
     - "doc"
+  NewCops: enable
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+Style/Documentation:
+  Enabled: false

@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe 'Todo Items', type: :system do
+RSpec.describe 'Todo Items' do
+  let(:user) { create(:user, email: 'test-user@example.com') }
+
   before do
-    @user = create(:user, email: 'test-user@example.com')
-    login_as(@user)
+    login_as(user)
   end
 
   it 'display user email' do
@@ -13,7 +14,7 @@ RSpec.describe 'Todo Items', type: :system do
   end
 
   it 'display registered todo items' do
-    create_list(:todo_item, 10, user: @user)
+    create_list(:todo_item, 10, user: user)
 
     visit '/todo_items'
 
@@ -21,8 +22,8 @@ RSpec.describe 'Todo Items', type: :system do
   end
 
   it 'hide comopleted todo items when switched hidden' do
-    create_list(:todo_item, 5, user: @user, name: "Completed Todo Item", is_completed: true)
-    create_list(:todo_item, 5, user: @user)
+    create_list(:todo_item, 5, user: user, name: "Completed Todo Item", is_completed: true)
+    create_list(:todo_item, 5, user: user)
 
     visit '/todo_items'
 
@@ -38,7 +39,7 @@ RSpec.describe 'Todo Items', type: :system do
   end
 
   it 'can create new todo item' do
-    create_list(:todo_item, 10, user: @user)
+    create_list(:todo_item, 10, user: user)
 
     visit '/todo_items'
 
@@ -56,7 +57,7 @@ RSpec.describe 'Todo Items', type: :system do
   end
 
   it 'can edit existing todo item' do
-    create_list(:todo_item, 10, user: @user)
+    create_list(:todo_item, 10, user: user)
 
     visit '/todo_items'
 
@@ -78,7 +79,7 @@ RSpec.describe 'Todo Items', type: :system do
   end
 
   it 'can delete existing todo item' do
-    create_list(:todo_item, 10, user: @user)
+    create_list(:todo_item, 10, user: user)
 
     visit '/todo_items'
 
