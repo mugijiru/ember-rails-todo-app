@@ -3,7 +3,7 @@ RSpec.configure do |config|
     DatabaseRewinder.clean_all
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseRewinder.clean
   end
 end
