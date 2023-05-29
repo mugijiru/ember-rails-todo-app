@@ -45,7 +45,7 @@ RSpec.describe '/todo_items', type: :request do
           post '/api/v1/todo_items',
                headers: request_headers,
                params: generate_params(name: nil)
-        }.to change(TodoItem, :count).by(0)
+        }.not_to change(TodoItem, :count)
       end
 
       it 'response status is 422(unprocessable entity)' do
