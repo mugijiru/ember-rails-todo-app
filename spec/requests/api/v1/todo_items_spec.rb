@@ -22,7 +22,7 @@ RSpec.describe '/todo_items' do
     it 'renders a successful response' do
       create(:todo_item, name: 'valid name', user: user)
       get '/api/v1/todo_items'
-      json = JSON.parse(response.body)
+      json = JSON.parse(response.parsed_body)
       expect(json['data'][0]['attributes']['name']).to eq 'valid name'
       assert_response_schema_confirm(200)
     end
