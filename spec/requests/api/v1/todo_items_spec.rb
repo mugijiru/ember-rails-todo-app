@@ -12,7 +12,7 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe '/todo_items', type: :request do
+RSpec.describe '/todo_items' do
   let(:user) { create(:user) }
   let(:request_headers) { { 'CONTENT_TYPE' => 'application/vnd.api+json' } }
 

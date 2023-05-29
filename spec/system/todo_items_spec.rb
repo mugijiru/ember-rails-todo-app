@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Todo Items', type: :system do
+RSpec.describe 'Todo Items' do
   let(:user) { create(:user, email: 'test-user@example.com') }
 
   before do
