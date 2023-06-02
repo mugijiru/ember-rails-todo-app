@@ -9,6 +9,9 @@ module.exports = function (defaults) {
       importBootstrapCSS: true,
       importBootstrapFont: false,
     },
+    babel: {
+      plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()],
+    },
   })
 
   // Use `app.import` to add additional libraries to the generated
