@@ -9,6 +9,11 @@ services:
       - "3306:3306"
     volumes:
       - ./db/mysql:/var/lib/mysql
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 26677
+        hard: 46677
 
   webdriver_chrome:
     image: selenium/standalone-chrome-debug
