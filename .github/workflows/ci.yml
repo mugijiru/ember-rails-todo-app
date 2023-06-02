@@ -1,4 +1,4 @@
-name: RSpec
+name: CI
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -75,10 +75,24 @@ jobs:
       run: |
         bundle exec rspec -f j -o tmp/rspec_results.json -f p
 
-    - name: CodeClimate afterbuild
+    - name: Format rspec result
+      run: ./cc-test-reporter format-coverage -o tmp/cc.rspec.json
+
+    - name: Run Ember test
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        COVERAGE: true
+      run: cd ember/todo-app && yarn test
+
+    - name: Format ember test result
+      run: ./cc-test-reporter format-coverage --prefix ember/todo-app -o tmp/cc.ember.json
+
+    - name: Upload test results to CodeClimate
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
-      run: ./cc-test-reporter after-build
+      run: |
+        ./cc-test-reporter sum-coverage tmp/cc.*.json -p 2 -o tmp/cc.total.json
+        ./cc-test-reporter upload-coverage -i tmp/cc.total.json
 
     - name: Report RSpec result
       uses: SonicGarden/rspec-report-action@v2
