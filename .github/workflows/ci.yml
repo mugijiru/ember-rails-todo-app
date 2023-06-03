@@ -74,6 +74,13 @@ jobs:
     - name: Format ember test result
       run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
 
+    - name: 'Upload cc.ember.json'
+      uses: actions/upload-artifact@v3
+      with:
+        name: cc-ember
+        path: tmp/cc.ember.json
+        retention-days: 1
+
     - name: Run RSpec
       env:
         RAILS_ENV: test
@@ -87,12 +94,12 @@ jobs:
     - name: Format rspec result
       run: ./cc-test-reporter format-coverage -o tmp/cc.rspec.json
 
-    - name: Upload test results to CodeClimate
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
-      run: |
-        ./cc-test-reporter sum-coverage tmp/cc.*.json -p 2 -o tmp/cc.total.json
-        ./cc-test-reporter upload-coverage -i tmp/cc.total.json
+    - name: 'Upload cc.rspec.json'
+      uses: actions/upload-artifact@v3
+      with:
+        name: cc-rspec
+        path: tmp/cc.rspec.json
+        retention-days: 1
 
     - name: Report RSpec result
       uses: SonicGarden/rspec-report-action@v2
@@ -101,12 +108,41 @@ jobs:
         json-path: tmp/rspec_results.json
       if: always()
 
+  after-build:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download rspec artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: cc-rspec
+        path: tmp
+
+    - name: Download ember artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: cc-ember
+        path: tmp
+
+    - name: Setup Code Climate test-reporter
+      run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
+    - name: Upload test results to CodeClimate
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
+      run: |
+        ./cc-test-reporter sum-coverage tmp/cc.*.json -p 2 -o tmp/cc.total.json
+        ./cc-test-reporter upload-coverage -i tmp/cc.total.json
+
     - name: Notify slack build result
       uses: lazy-actions/slatify@master
       if: always()
       with:
           type: ${{ job.status }}
-          job_name: '*RSpec*'
+          job_name: '*after-build*'
           mention: 'here'
           username: 'GitHub Actions'
           mention_if: 'failure'
