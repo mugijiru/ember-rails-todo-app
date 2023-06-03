@@ -10,8 +10,13 @@ module.exports = function (defaults) {
       importBootstrapFont: false,
     },
     babel: {
+      sourceMaps: 'inline',
       plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()],
     },
+    sourcemaps: {
+      enabled: true,
+      extensions: ['js']
+    }
   })
 
   // Use `app.import` to add additional libraries to the generated
