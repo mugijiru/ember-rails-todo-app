@@ -8,7 +8,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  test:
+  rspec:
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -65,22 +65,6 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
       run: ./cc-test-reporter before-build
 
-    - name: Run Ember test
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        COVERAGE: true
-      run: cd ember/todo-app && yarn run ember test
-
-    - name: Format ember test result
-      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
-
-    - name: 'Upload cc.ember.json'
-      uses: actions/upload-artifact@v3
-      with:
-        name: cc-ember
-        path: tmp/cc.ember.json
-        retention-days: 1
-
     - name: Run RSpec
       env:
         RAILS_ENV: test
@@ -108,8 +92,56 @@ jobs:
         json-path: tmp/rspec_results.json
       if: always()
 
+  ember-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: "ember/todo-app/package.json"
+
+    - name: install ember-cli
+      run: yarn global add ember-cli
+
+    - name: Setup Ember.js App
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      run: |
+        cd ember/todo-app
+        yarn
+        yarn run ember build
+
+    - name: Setup Code Climate test-reporter
+      run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
+    - name: CodeClimate prebuild
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
+      run: ./cc-test-reporter before-build
+
+    - name: Run Ember test
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        COVERAGE: true
+      run: cd ember/todo-app && yarn run ember test
+
+    - name: Format ember test result
+      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
+
+    - name: 'Upload cc.ember.json'
+      uses: actions/upload-artifact@v3
+      with:
+        name: cc-ember
+        path: tmp/cc.ember.json
+        retention-days: 1
+
   after-build:
-    needs: test
+    needs: [rspec, ember-test]
     runs-on: ubuntu-latest
 
     steps:
