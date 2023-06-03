@@ -34,9 +34,6 @@ jobs:
       with:
         node-version-file: "ember/todo-app/package.json"
 
-    - name: install ember-cli
-      run: yarn global add ember-cli
-
     - name: Setup Rails
       env:
         RAILS_ENV: test
@@ -102,9 +99,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version-file: "ember/todo-app/package.json"
-
-    - name: install ember-cli
-      run: yarn global add ember-cli
 
     - name: Setup Ember.js App
       env:
