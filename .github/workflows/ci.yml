@@ -8,7 +8,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  test:
+  rspec:
     runs-on: ubuntu-latest
     services:
       mysql:
@@ -33,9 +33,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version-file: "ember/todo-app/package.json"
-
-    - name: install ember-cli
-      run: yarn global add ember-cli
 
     - name: Setup Rails
       env:
@@ -65,18 +62,6 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
       run: ./cc-test-reporter before-build
 
-    - name: Run Ember test
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        COVERAGE: true
-      run: cd ember/todo-app && yarn test
-
-    - name: list of ember/todo-app/coverage for debug
-      run: ls ember/todo-app/coverage/
-
-    - name: Format ember test result
-      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
-
     - name: Run RSpec
       env:
         RAILS_ENV: test
@@ -90,12 +75,12 @@ jobs:
     - name: Format rspec result
       run: ./cc-test-reporter format-coverage -o tmp/cc.rspec.json
 
-    - name: Upload test results to CodeClimate
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
-      run: |
-        ./cc-test-reporter sum-coverage tmp/cc.*.json -p 2 -o tmp/cc.total.json
-        ./cc-test-reporter upload-coverage -i tmp/cc.total.json
+    - name: 'Upload cc.rspec.json'
+      uses: actions/upload-artifact@v3
+      with:
+        name: cc-rspec
+        path: tmp/cc.rspec.json
+        retention-days: 1
 
     - name: Report RSpec result
       uses: SonicGarden/rspec-report-action@v2
@@ -104,12 +89,86 @@ jobs:
         json-path: tmp/rspec_results.json
       if: always()
 
+  ember-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: "ember/todo-app/package.json"
+
+    - name: Setup Ember.js App
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      run: |
+        cd ember/todo-app
+        yarn
+        yarn run ember build
+
+    - name: Setup Code Climate test-reporter
+      run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
+    - name: CodeClimate prebuild
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
+      run: ./cc-test-reporter before-build
+
+    - name: Run Ember test
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        COVERAGE: true
+      run: cd ember/todo-app && yarn run ember test
+
+    - name: Format ember test result
+      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
+
+    - name: 'Upload cc.ember.json'
+      uses: actions/upload-artifact@v3
+      with:
+        name: cc-ember
+        path: tmp/cc.ember.json
+        retention-days: 1
+
+  after-build:
+    needs: [rspec, ember-test]
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download rspec artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: cc-rspec
+        path: tmp
+
+    - name: Download ember artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: cc-ember
+        path: tmp
+
+    - name: Setup Code Climate test-reporter
+      run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
+    - name: Upload test results to CodeClimate
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
+      run: |
+        ./cc-test-reporter sum-coverage tmp/cc.*.json -p 2 -o tmp/cc.total.json
+        ./cc-test-reporter upload-coverage -i tmp/cc.total.json
+
     - name: Notify slack build result
       uses: lazy-actions/slatify@master
       if: always()
       with:
           type: ${{ job.status }}
-          job_name: '*RSpec*'
+          job_name: '*after-build*'
           mention: 'here'
           username: 'GitHub Actions'
           mention_if: 'failure'
