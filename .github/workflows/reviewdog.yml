@@ -116,3 +116,20 @@ jobs:
           url: ${{ secrets.SLACK_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  reek:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Use ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+
+    - name: reek
+      uses: reviewdog/action-reek@v1
+      with:
+        reek_version: gemfile
+        reporter: github-pr-review
