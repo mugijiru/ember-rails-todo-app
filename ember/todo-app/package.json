@@ -27,6 +27,8 @@
     "@mugijiru/ember-components": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/helper-explode-assignable-expression": "^7.18.6",
+    "@babel/helper-get-function-arity": "^7.16.7",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.7.0",
     "@glimmer/component": "^1.1.2",
@@ -61,6 +63,7 @@
     "@types/qunit": "^2.19.5",
     "@types/rsvp": "^4.0.4",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-dynamic-import-node": "^2.3.3",
     "bootstrap": "^4.6.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.4.1",
