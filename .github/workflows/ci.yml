@@ -65,6 +65,25 @@ jobs:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
       run: ./cc-test-reporter before-build
 
+    - name: Run Ember test
+      env:
+        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        COVERAGE: true
+      run: cd ember/todo-app && yarn test
+
+    - name: list of ember/todo-app/coverage for debug
+      run: ls ember/todo-app/coverage/
+
+    - name: Format ember test result
+      run: ./cc-test-reporter format-coverage ember/todo-app/coverage/lcov.info -o tmp/cc.ember.json --add-prefix ember/todo-app -t lcov
+
+    - name: 'Upload cc.ember.json'
+      uses: actions/upload-artifact@v3
+      with:
+        name: cc-ember
+        path: tmp/cc.ember.json
+        retention-days: 1
+
     - name: Run RSpec
       env:
         RAILS_ENV: test
@@ -83,22 +102,6 @@ jobs:
       with:
         name: cc-rspec
         path: tmp/cc.rspec.json
-        retention-days: 1
-
-    - name: Run Ember test
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        COVERAGE: true
-      run: cd ember/todo-app && yarn test
-
-    - name: Format ember test result
-      run: ./cc-test-reporter format-coverage ember/todo-app/coverage/lcov.info -o tmp/cc.ember.json --add-prefix ember/todo-app -t lcov
-
-    - name: 'Upload cc.ember.json'
-      uses: actions/upload-artifact@v3
-      with:
-        name: cc-ember
-        path: tmp/cc.ember.json
         retention-days: 1
 
     - name: Upload test results to CodeClimate
