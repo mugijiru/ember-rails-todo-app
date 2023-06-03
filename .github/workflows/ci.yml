@@ -77,13 +77,6 @@ jobs:
     - name: Format ember test result
       run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
 
-    - name: 'Upload cc.ember.json'
-      uses: actions/upload-artifact@v3
-      with:
-        name: cc-ember
-        path: tmp/cc.ember.json
-        retention-days: 1
-
     - name: Run RSpec
       env:
         RAILS_ENV: test
@@ -97,26 +90,12 @@ jobs:
     - name: Format rspec result
       run: ./cc-test-reporter format-coverage -o tmp/cc.rspec.json
 
-    - name: 'Upload cc.rspec.json'
-      uses: actions/upload-artifact@v3
-      with:
-        name: cc-rspec
-        path: tmp/cc.rspec.json
-        retention-days: 1
-
     - name: Upload test results to CodeClimate
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_REPORTER_ID }}
       run: |
         ./cc-test-reporter sum-coverage tmp/cc.*.json -p 2 -o tmp/cc.total.json
         ./cc-test-reporter upload-coverage -i tmp/cc.total.json
-
-    - name: 'Upload cc.total.json'
-      uses: actions/upload-artifact@v3
-      with:
-        name: cc-total
-        path: tmp/cc.total.json
-        retention-days: 1
 
     - name: Report RSpec result
       uses: SonicGarden/rspec-report-action@v2
