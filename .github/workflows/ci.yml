@@ -75,7 +75,7 @@ jobs:
       run: ls ember/todo-app/coverage/
 
     - name: Format ember test result
-      run: ./cc-test-reporter format-coverage ember/todo-app/coverage/lcov.info -o tmp/cc.ember.json --add-prefix ember/todo-app -t lcov
+      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
 
     - name: 'Upload cc.ember.json'
       uses: actions/upload-artifact@v3
