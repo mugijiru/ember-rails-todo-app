@@ -91,7 +91,7 @@ jobs:
         NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       run: |
         cd ember/todo-app
-        yarn
+        yarn install --frozen-lockfile
         yarn add eslint-formatter-rdjson -D
 
     - name: Run reviewdog
