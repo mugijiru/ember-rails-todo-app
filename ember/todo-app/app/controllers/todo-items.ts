@@ -1,17 +1,23 @@
+import { DS } from 'ember-data'
 import { later } from '@ember/runloop'
 import { action } from '@ember/object'
 import { service } from '@ember/service'
 import Controller from '@ember/controller'
 import { tracked } from '@glimmer/tracking'
+import CurrentUserService from 'todo-app/services/current-user'
+import TodoItemModel from 'todo-app/models/todo-item'
 
 export default class TodoItems extends Controller {
-  @tracked editingTodoItem = null
+  @tracked editingTodoItem: TodoItemModel | null = null
   @tracked hiddenCompleted = false
   @tracked hidingCompleted = false
-  @service store
-  @service currentUser
+  @service declare store: DS.Store
+  @service declare currentUser: CurrentUserService
 
-  get savedTodoItems() {
+  // todoItems = A<TodoItemModel>([]); // これだと filterBy の第二引数で type error になる
+  todoItems: any = []
+
+  get savedTodoItems(): TodoItemModel[] {
     return this.todoItems.filterBy('isNew', false)
   }
 
@@ -42,7 +48,7 @@ export default class TodoItems extends Controller {
   }
 
   @action
-  edit(item) {
+  edit(item: TodoItemModel) {
     this.editingTodoItem = item
   }
 
