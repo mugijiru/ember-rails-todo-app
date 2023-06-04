@@ -8,7 +8,7 @@ import {
   forceModulesToBeLoaded,
   sendCoverage,
 } from 'ember-cli-code-coverage/test-support'
-import setupSinon from 'ember-sinon-qunit';
+import setupSinon from 'ember-sinon-qunit'
 
 QUnit.done(async () => {
   forceModulesToBeLoaded()
@@ -18,6 +18,6 @@ QUnit.done(async () => {
 setApplication(Application.create(config.APP))
 
 setup(QUnit.assert)
-setupSinon();
+setupSinon()
 
 start()
