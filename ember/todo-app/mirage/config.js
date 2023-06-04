@@ -1,7 +1,7 @@
-import { discoverEmberDataModels } from "ember-cli-mirage";
-import { createServer } from 'miragejs';
+import { discoverEmberDataModels } from 'ember-cli-mirage'
+import { createServer } from 'miragejs'
 
-export default function(config) {
+export default function (config) {
   let finalConfig = {
     ...config,
     models: { ...discoverEmberDataModels(), ...config.models },
@@ -9,7 +9,7 @@ export default function(config) {
       this.namespace = '/api/v1'
       this.resource('todo-item')
     },
-  };
+  }
 
-  return createServer(finalConfig);
+  return createServer(finalConfig)
 }

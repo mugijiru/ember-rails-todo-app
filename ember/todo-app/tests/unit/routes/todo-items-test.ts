@@ -3,11 +3,11 @@ import { TestContext } from '@ember/test-helpers'
 import { setupTest } from 'todo-app/tests/helpers'
 import TodoItemModel from 'todo-app/models/todo-item'
 import TodoItemsRoute from 'todo-app/routes/todo-items'
-import { Server } from 'miragejs';
+import { Server } from 'miragejs'
 import { setupMirage } from 'ember-cli-mirage/test-support'
 
 interface MirageTestContext extends TestContext {
-  server: Server;
+  server: Server
 }
 
 module('Unit | Route | todo-items', function (hooks) {
