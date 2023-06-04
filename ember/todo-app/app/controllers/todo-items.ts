@@ -1,18 +1,24 @@
+import Store from '@ember-data/store'
+import { A } from '@ember/array'
 import { later } from '@ember/runloop'
 import { action } from '@ember/object'
 import { service } from '@ember/service'
 import Controller from '@ember/controller'
 import { tracked } from '@glimmer/tracking'
+import CurrentUserService from 'todo-app/services/current-user'
+import TodoItemModel from 'todo-app/models/todo-item'
 
 export default class TodoItems extends Controller {
-  @tracked editingTodoItem = null
+  @tracked editingTodoItem: TodoItemModel | null = null
   @tracked hiddenCompleted = false
   @tracked hidingCompleted = false
-  @service store
-  @service currentUser
+  @service declare store: Store
+  @service declare currentUser: CurrentUserService
 
-  get savedTodoItems() {
-    return this.todoItems.filterBy('isNew', false)
+  todoItems = A<TodoItemModel>([])
+
+  get savedTodoItems(): TodoItemModel[] {
+    return this.todoItems.filter((item) => !item.isNew)
   }
 
   get incompleteItems() {
@@ -28,13 +34,13 @@ export default class TodoItems extends Controller {
   }
 
   get buildingTodoItem() {
-    return this.todoItems.filterBy('isNew', true).firstObject
+    return this.todoItems.filter((item) => item.isNew).firstObject
   }
 
   @action
   build() {
     const buildingRecord = this.todoItems
-      .filterBy('isNew', true)
+      .filter((item) => item.isNew)
       .get('firstObject')
 
     this.editingTodoItem =
@@ -42,7 +48,7 @@ export default class TodoItems extends Controller {
   }
 
   @action
-  edit(item) {
+  edit(item: TodoItemModel) {
     this.editingTodoItem = item
   }
 

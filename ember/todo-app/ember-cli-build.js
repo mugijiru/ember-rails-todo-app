@@ -1,5 +1,7 @@
 'use strict'
 
+// typescript じゃないので、eslint がエラーを出すのを無視する
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const EmberApp = require('ember-cli/lib/broccoli/ember-app')
 
 module.exports = function (defaults) {
@@ -10,7 +12,14 @@ module.exports = function (defaults) {
       importBootstrapFont: false,
     },
     babel: {
+      sourceMaps: 'inline',
+      // typescript じゃないので、eslint がエラーを出すのを無視する
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       plugins: [...require('ember-cli-code-coverage').buildBabelPlugin()],
+    },
+    sourcemaps: {
+      enabled: true,
+      extensions: ['js'],
     },
   })
 

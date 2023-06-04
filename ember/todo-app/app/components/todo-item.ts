@@ -2,12 +2,18 @@ import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 import { later } from '@ember/runloop'
 import { action } from '@ember/object'
+import TodoItemModel from 'todo-app/models/todo-item'
 
-export default class TodoItem extends Component {
+export interface TodoItemArgs {
+  item?: TodoItemModel
+  setEditingRecord: (item: TodoItemModel) => void
+}
+
+export default class TodoItem extends Component<TodoItemArgs> {
   @tracked isShowing = false
 
-  constructor() {
-    super(...arguments)
+  constructor(owner: unknown, args: TodoItemArgs) {
+    super(owner, args)
     this.isShowing = true
     later(() => {
       this.isShowing = false
@@ -39,6 +45,10 @@ export default class TodoItem extends Component {
   @action
   toggle() {
     const item = this.item
+    if (!item) {
+      return
+    }
+
     item.isCompleted = !item.isCompleted
     item.save()
   }
@@ -46,11 +56,20 @@ export default class TodoItem extends Component {
   @action
   edit() {
     const item = this.item
+    if (!item) {
+      return
+    }
+
     this.args.setEditingRecord(item)
   }
 
   @action
   delete() {
-    this.item.destroyRecord()
+    const item = this.item
+    if (!item) {
+      return
+    }
+
+    item.destroyRecord()
   }
 }
