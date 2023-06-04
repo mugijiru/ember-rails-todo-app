@@ -62,6 +62,8 @@
     "@types/ember__utils": "^4.0.2",
     "@types/qunit": "^2.19.5",
     "@types/rsvp": "^4.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
     "babel-eslint": "^10.1.0",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "bootstrap": "^4.6.0",
