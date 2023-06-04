@@ -6,6 +6,6 @@ export default class CurrentUserService extends Service {
     if (!div) {
       return ''
     }
-    return div.dataset['email']
+    return div.dataset['email'] || ''
   }
 }
