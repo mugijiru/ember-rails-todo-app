@@ -1,4 +1,5 @@
 import { DS } from 'ember-data'
+import { A } from '@ember/array'
 import { later } from '@ember/runloop'
 import { action } from '@ember/object'
 import { service } from '@ember/service'
@@ -14,11 +15,10 @@ export default class TodoItems extends Controller {
   @service declare store: DS.Store
   @service declare currentUser: CurrentUserService
 
-  // todoItems = A<TodoItemModel>([]); // これだと filterBy の第二引数で type error になる
-  todoItems: any = []
+  todoItems = A<TodoItemModel>([]);
 
   get savedTodoItems(): TodoItemModel[] {
-    return this.todoItems.filterBy('isNew', false)
+    return this.todoItems.filter((item) => !item.isNew)
   }
 
   get incompleteItems() {
@@ -34,13 +34,13 @@ export default class TodoItems extends Controller {
   }
 
   get buildingTodoItem() {
-    return this.todoItems.filterBy('isNew', true).firstObject
+    return this.todoItems.filter((item) => item.isNew).firstObject
   }
 
   @action
   build() {
     const buildingRecord = this.todoItems
-      .filterBy('isNew', true)
+      .filter((item) => item.isNew)
       .get('firstObject')
 
     this.editingTodoItem =
