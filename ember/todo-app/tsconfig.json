@@ -4,6 +4,7 @@
     "strict": true,
     "allowJs": true,
     "checkJs": false,
+    "noUncheckedIndexedAccess": true,
     "inlineSourceMap": true,
     "inlineSources": true,
     "baseUrl": ".",
