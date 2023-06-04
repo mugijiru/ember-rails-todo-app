@@ -1,6 +1,6 @@
 import { module, test } from 'qunit'
 import sinon from 'sinon'
-import DS from 'ember-data'
+import Store from '@ember-data/store'
 import TodoItems from 'todo-app/controllers/todo-items'
 import { setupTest } from 'todo-app/tests/helpers'
 
@@ -47,7 +47,7 @@ module('Unit | Controller | todo-items', function (hooks) {
 
   test('action build should set new todo-item from todoItems to editingTodoItem', async function (assert) {
     const controller = this.owner.lookup('controller:todo-items') as TodoItems
-    const store = this.owner.lookup('service:store') as DS.Store
+    const store = this.owner.lookup('service:store') as Store
     controller.todoItems = [...Array(3)].map((num) =>
       store.createRecord('todo-item', {
         name: `item ${num}`,

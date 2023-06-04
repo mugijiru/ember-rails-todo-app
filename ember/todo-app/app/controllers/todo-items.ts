@@ -1,4 +1,4 @@
-import { DS } from 'ember-data'
+import Store from '@ember-data/store'
 import { A } from '@ember/array'
 import { later } from '@ember/runloop'
 import { action } from '@ember/object'
@@ -12,7 +12,7 @@ export default class TodoItems extends Controller {
   @tracked editingTodoItem: TodoItemModel | null = null
   @tracked hiddenCompleted = false
   @tracked hidingCompleted = false
-  @service declare store: DS.Store
+  @service declare store: Store
   @service declare currentUser: CurrentUserService
 
   todoItems = A<TodoItemModel>([])
