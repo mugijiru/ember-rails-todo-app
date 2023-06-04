@@ -12,13 +12,14 @@ module('Unit | Serializer | application', function (hooks) {
       name: 'new',
       isCompleted: false,
     })
-    const serializedRecord: any = record.serialize()
+    const serializedRecord: any = record.serialize() // eslint-disable-line @typescript-eslint/no-explicit-any
     const attributeNames = Object.keys(serializedRecord.data.attributes)
     assert.ok(attributeNames.includes('is_completed'))
   })
 
   test('it serializes record relationships', function (assert) {
     // setup dummy models
+    // eslint-disable-next-line ember/no-classic-classes
     const Organization = Model.extend({
       name: attr('string'),
       todoItems: hasMany('todo-items', { async: false, inverse: null }),
@@ -30,7 +31,7 @@ module('Unit | Serializer | application', function (hooks) {
       name: 'a org',
       todoItems: [],
     })
-    const serializedRecord: any = record.serialize()
+    const serializedRecord: any = record.serialize() // eslint-disable-line @typescript-eslint/no-explicit-any
     const relationships = serializedRecord.data.relationships
     assert.ok(relationships['todo_items'])
   })

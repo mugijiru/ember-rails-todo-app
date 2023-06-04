@@ -26,7 +26,7 @@ module('Unit | Route | todo-items', function (hooks) {
   })
 
   test('the model is stored all todo items', async function (this: Context) {
-    const route = this.owner.lookup('route:todo-items') as any
+    const route = this.owner.lookup('route:todo-items') as any // eslint-disable-line @typescript-eslint/no-explicit-any
 
     this.worker.use(
       rest.get('/api/v1/todo_items', (_req, res, ctx) => {
@@ -69,7 +69,7 @@ module('Unit | Route | todo-items', function (hooks) {
 
   test('setupController should set todoItems to controller', function () {
     const route = this.owner.lookup('route:todo-items') as TodoItemsRoute
-    const controller = this.owner.lookup('controller:todo-items') as any
+    const controller = this.owner.lookup('controller:todo-items') as any // eslint-disable-line @typescript-eslint/no-explicit-any
     const store = this.owner.lookup('service:store')
     const todoItems: TodoItemModel[] = []
     todoItems.push(
