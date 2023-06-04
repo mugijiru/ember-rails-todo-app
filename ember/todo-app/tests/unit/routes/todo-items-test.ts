@@ -5,7 +5,7 @@ import { setupTest } from "todo-app/tests/helpers"
 import TodoItemModel from "todo-app/models/todo-item"
 
 interface Context extends TestContext {
-  worker: ReturnType<typeof setupWorker >
+  worker: ReturnType<typeof setupWorker>
 }
 
 module("Unit | Route | todo-items", function (hooks) {
@@ -18,6 +18,10 @@ module("Unit | Route | todo-items", function (hooks) {
 
   hooks.afterEach(function (this: Context) {
     this.worker.resetHandlers()
+  })
+
+  hooks.after(function (this: Context) {
+    this.worker.stop()
   })
 
   test("the model is stored all todo items", async function (this: Context) {
