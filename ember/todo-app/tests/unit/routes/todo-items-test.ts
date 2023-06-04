@@ -3,6 +3,7 @@ import { setupWorker, rest } from "msw"
 import { TestContext } from "@ember/test-helpers"
 import { setupTest } from "todo-app/tests/helpers"
 import TodoItemModel from "todo-app/models/todo-item"
+import TodoItemsRoute from "todo-app/routes/todo-items"
 
 interface Context extends TestContext {
   worker: ReturnType<typeof setupWorker>
@@ -64,7 +65,7 @@ module("Unit | Route | todo-items", function (hooks) {
   })
 
   test("setupController should set todoItems to controller", function () {
-    const route = this.owner.lookup("route:todo-items") as any
+    const route = this.owner.lookup("route:todo-items") as TodoItemsRoute
     const controller = this.owner.lookup("controller:todo-items") as any
     const store = this.owner.lookup('service:store')
     const todoItems: TodoItemModel[] = []
