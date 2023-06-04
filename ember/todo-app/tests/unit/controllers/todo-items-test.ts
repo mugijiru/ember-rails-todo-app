@@ -42,7 +42,8 @@ module('Unit | Controller | todo-items', function (hooks) {
 
     controller.build()
     const editingTodoItem = controller.editingTodoItem
-    assert.ok(editingTodoItem!.isNew)
+
+    assert.ok(editingTodoItem?.isNew)
   })
 
   test('action build should set new todo-item from todoItems to editingTodoItem', async function (assert) {
