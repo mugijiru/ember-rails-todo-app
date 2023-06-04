@@ -4,7 +4,7 @@ import { setupTest } from 'todo-app/tests/helpers'
 import Model, { attr, hasMany } from '@ember-data/model'
 
 module('Unit | Serializer | application', function (hooks) {
-  setupTest(hooks);
+  setupTest(hooks)
 
   test('it serializes record attirbute names', function (assert) {
     const store = this.owner.lookup('service:store')
