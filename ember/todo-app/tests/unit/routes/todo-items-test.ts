@@ -58,4 +58,22 @@ module("Unit | Route | todo-items", function (hooks) {
     const todoItems = await route.model() as TodoItemModel[]
     assert.deepEqual(todoItems.map((i) => i.name), ["item 1", "item 2"])
   })
+
+  test("setupController should set todoItems to controller", function () {
+    const route = this.owner.lookup("route:todo-items") as any
+    const controller = this.owner.lookup("controller:todo-items") as any
+    const store = this.owner.lookup('service:store')
+    const todoItems: TodoItemModel[] = []
+    todoItems.push(store.createRecord('todo-item', {
+      name: 'item1',
+      isCompleted: false,
+    }))
+    todoItems.push(store.createRecord('todo-item', {
+      name: 'item2',
+      isCompleted: true,
+    }))
+
+    route.setupController(controller, todoItems)
+    assert.deepEqual(controller.todoItems, todoItems)
+  })
 })
