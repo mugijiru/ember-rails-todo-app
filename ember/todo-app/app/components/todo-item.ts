@@ -46,7 +46,7 @@ export default class TodoItem extends Component<TodoItemArgs> {
   toggle() {
     const item = this.item
     if (!item) {
-      return;
+      return
     }
 
     item.isCompleted = !item.isCompleted
@@ -57,7 +57,7 @@ export default class TodoItem extends Component<TodoItemArgs> {
   edit() {
     const item = this.item
     if (!item) {
-      return;
+      return
     }
 
     this.args.setEditingRecord(item)
@@ -67,7 +67,7 @@ export default class TodoItem extends Component<TodoItemArgs> {
   delete() {
     const item = this.item
     if (!item) {
-      return;
+      return
     }
 
     item.destroyRecord()

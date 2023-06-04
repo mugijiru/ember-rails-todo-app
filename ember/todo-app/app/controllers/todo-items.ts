@@ -15,7 +15,7 @@ export default class TodoItems extends Controller {
   @service declare store: DS.Store
   @service declare currentUser: CurrentUserService
 
-  todoItems = A<TodoItemModel>([]);
+  todoItems = A<TodoItemModel>([])
 
   get savedTodoItems(): TodoItemModel[] {
     return this.todoItems.filter((item) => !item.isNew)
