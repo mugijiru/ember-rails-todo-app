@@ -9,8 +9,8 @@ updates:
     directory: "/ember/todo-app" # Location of package manifests
     schedule:
       interval: "weekly"
-      day: sunday
-      time: "09:00"
+      day: friday
+      time: "19:00"
       timezone: Asia/Tokyo
     versioning-strategy: lockfile-only
 
@@ -19,7 +19,7 @@ updates:
     target-branch: "main"
     schedule:
       interval: "weekly"
-      day: "sunday"
-      time: "09:00"
+      day: "friday"
+      time: "19:00"
       timezone: "Asia/Tokyo"
     versioning-strategy: "lockfile-only"
