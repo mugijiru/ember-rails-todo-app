@@ -124,6 +124,9 @@ jobs:
         COVERAGE: true
       run: cd ember/todo-app && yarn run ember test
 
+    - name: debug ls
+      run: cd ember/todo-app && ls -a coverage
+
     - name: Format ember test result
       run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
 
