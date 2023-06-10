@@ -124,8 +124,11 @@ jobs:
         COVERAGE: true
       run: cd ember/todo-app && yarn run ember test
 
+    - name: list coverage files for debug
+      run: cd ember/todo-app && ls -a coverage
+
     - name: Format ember test result
-      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app
+      run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app -t lcov
 
     - name: 'Upload cc.ember.json'
       uses: actions/upload-artifact@v3
