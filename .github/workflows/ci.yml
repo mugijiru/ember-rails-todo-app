@@ -121,8 +121,7 @@ jobs:
     - name: Run Ember test
       env:
         NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-        COVERAGE: true
-      run: cd ember/todo-app && yarn run ember test
+      run: cd ember/todo-app && COVERAGE=true yarn run ember test
 
     - name: list coverage files for debug
       run: |
