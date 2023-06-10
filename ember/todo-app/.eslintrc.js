@@ -21,7 +21,9 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'import/no-unresolved': 'off', // ember 系で error が大量に出るので一旦 off にする
+  },
   overrides: [
     // node files
     {
