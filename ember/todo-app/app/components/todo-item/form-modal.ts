@@ -1,7 +1,14 @@
 import { action } from '@ember/object'
 import Component from '@glimmer/component'
 
-export default class TodoItemFormModal extends Component {
+import TodoItemModel from 'todo-app/models/todo-item'
+
+interface TodoItemFormModalArgs {
+  item?: TodoItemModel
+  close: () => void
+}
+
+export default class TodoItemFormModal extends Component<TodoItemFormModalArgs> {
   get item() {
     return this.args.item ?? null
   }
@@ -14,7 +21,8 @@ export default class TodoItemFormModal extends Component {
     if (!this.item) {
       return ''
     }
-    const mode = this.item.isNew ? 'New' : 'Edit'
+
+    const mode = this.item.get('isNew') ? 'New' : 'Edit'
     return `${mode} TODO`
   }
 
@@ -35,6 +43,10 @@ export default class TodoItemFormModal extends Component {
 
   @action
   save() {
+    if (!this.item) {
+      return false
+    }
+
     this.item
       .save()
       .then(() => {
