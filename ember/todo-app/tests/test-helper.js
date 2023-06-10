@@ -11,14 +11,15 @@ import { setup } from 'qunit-dom'
 import Application from 'todo-app/app'
 import config from 'todo-app/config/environment'
 
-QUnit.done(async () => {
-  forceModulesToBeLoaded()
-  await sendCoverage()
-})
-
 setApplication(Application.create(config.APP))
 
 setup(QUnit.assert)
 setupSinon()
 
 start()
+
+QUnit.done(async () => {
+  forceModulesToBeLoaded()
+  console.log('Sending coverage report...')
+  await sendCoverage()
+})
