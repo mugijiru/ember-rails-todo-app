@@ -121,7 +121,9 @@ jobs:
     - name: Run Ember test
       env:
         NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-      run: cd ember/todo-app && COVERAGE=true yarn run ember test
+      run: |
+        cd ember/todo-app && COVERAGE=true yarn run ember test
+        sleep 3
 
     - name: Format ember test result
       run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app -t lcov
