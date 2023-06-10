@@ -21,8 +21,35 @@ module.exports = {
   env: {
     browser: true,
   },
+  settings: {
+    'import/internal-regex': '^todo-app/',
+  },
   rules: {
     'import/no-unresolved': 'off', // ember 系で error が大量に出るので一旦 off にする
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        pathGroups: [
+          {
+            pattern: 'todo-app/**',
+            group: 'internal',
+          },
+        ],
+        alphabetize: {
+          order: 'asc',
+        },
+        'newlines-between': 'always',
+        distinctGroup: true,
+      },
+    ],
   },
   overrides: [
     // node files
