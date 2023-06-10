@@ -1,6 +1,7 @@
-import { module, test } from 'qunit'
-import sinon from 'sinon'
 import Store from '@ember-data/store'
+import { module, test } from 'qunit'
+import { stub } from 'sinon'
+
 import TodoItems from 'todo-app/controllers/todo-items'
 import { setupTest } from 'todo-app/tests/helpers'
 
@@ -15,7 +16,7 @@ module('Unit | Controller | todo-items', function (hooks) {
     const savedTodoItem = this.owner
       .lookup('service:store')
       .createRecord('todo-item', { name: 'saved', isCompleted: false })
-    sinon.stub(savedTodoItem, 'isNew').get(() => false)
+    stub(savedTodoItem, 'isNew').get(() => false)
 
     controller.todoItems = [newTodoItem, savedTodoItem]
     const actual = controller.get('savedTodoItems')
@@ -30,7 +31,7 @@ module('Unit | Controller | todo-items', function (hooks) {
     const savedTodoItem = this.owner
       .lookup('service:store')
       .createRecord('todo-item', { name: 'saved', isCompleted: false })
-    sinon.stub(savedTodoItem, 'isNew').get(() => false)
+    stub(savedTodoItem, 'isNew').get(() => false)
 
     controller.todoItems = [newTodoItem, savedTodoItem]
     const actual = controller.get('buildingTodoItem')

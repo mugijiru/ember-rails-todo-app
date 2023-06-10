@@ -1,9 +1,10 @@
-import { assert, module, test } from 'qunit'
-import { setupWorker, rest } from 'msw'
 import { TestContext } from '@ember/test-helpers'
-import { setupTest } from 'todo-app/tests/helpers'
+import { setupWorker, rest } from 'msw'
+import { assert, module, test } from 'qunit'
+
 import TodoItemModel from 'todo-app/models/todo-item'
 import TodoItemsRoute from 'todo-app/routes/todo-items'
+import { setupTest } from 'todo-app/tests/helpers'
 
 interface Context extends TestContext {
   worker: ReturnType<typeof setupWorker>

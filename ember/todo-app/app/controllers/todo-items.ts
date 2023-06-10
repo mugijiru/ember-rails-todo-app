@@ -1,12 +1,13 @@
-import Store from '@ember-data/store'
 import { A } from '@ember/array'
-import { later } from '@ember/runloop'
-import { action } from '@ember/object'
-import { service } from '@ember/service'
 import Controller from '@ember/controller'
+import { action } from '@ember/object'
+import { later } from '@ember/runloop'
+import { service } from '@ember/service'
+import Store from '@ember-data/store'
 import { tracked } from '@glimmer/tracking'
-import CurrentUserService from 'todo-app/services/current-user'
+
 import TodoItemModel from 'todo-app/models/todo-item'
+import CurrentUserService from 'todo-app/services/current-user'
 
 export default class TodoItems extends Controller {
   @tracked editingTodoItem: TodoItemModel | null = null
