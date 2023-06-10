@@ -1,7 +1,7 @@
+import Model, { attr, hasMany } from '@ember-data/model'
 import { module, test } from 'qunit'
 
 import { setupTest } from 'todo-app/tests/helpers'
-import Model, { attr, hasMany } from '@ember-data/model'
 
 module('Unit | Serializer | application', function (hooks) {
   setupTest(hooks)

@@ -1,5 +1,5 @@
-import JSONAPIAdapter from '@ember-data/adapter/json-api'
 import { underscore } from '@ember/string'
+import JSONAPIAdapter from '@ember-data/adapter/json-api'
 import ModelRegistry from 'ember-data/types/registries/model' // eslint-disable-line ember/use-ember-data-rfc-395-imports
 import { pluralize } from 'ember-inflector'
 

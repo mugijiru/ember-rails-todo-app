@@ -1,6 +1,7 @@
+import Store from '@ember-data/store'
 import { module, test } from 'qunit'
 import sinon from 'sinon'
-import Store from '@ember-data/store'
+
 import TodoItems from 'todo-app/controllers/todo-items'
 import { setupTest } from 'todo-app/tests/helpers'
 
