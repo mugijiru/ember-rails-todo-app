@@ -13,6 +13,23 @@ interface Context extends TestContext {
 module("Integration | Component | todo-item/form-modal", function (hooks) {
   setupRenderingTest(hooks)
 
+  test('does not show modal when item is undefined', async function (this: Context, assert) {
+    this.close = () => {} // eslint-disable-line @typescript-eslint/no-empty-function
+    await render(hbs(`<TodoItem::FormModal @item={{this.item}} @close={{this.close}}/>`))
+
+    assert.dom('.modal').isNotVisible();
+  })
+
+  test('show modal when item is exists', async function (this: Context, assert) {
+    const store = this.owner.lookup('service:store')
+    const item = store.createRecord('todo-item', { name: 'new item!', body: 'new item body!' })
+    this.item = item
+    this.close = () => {} // eslint-disable-line @typescript-eslint/no-empty-function
+    await render(hbs(`<TodoItem::FormModal @item={{this.item}} @close={{this.close}}/>`))
+
+    assert.dom('.modal').isVisible();
+  })
+
   test('renders form with item properties', async function (this: Context, assert) {
     const store = this.owner.lookup('service:store')
     const item = store.createRecord('todo-item', { name: 'new item!', body: 'new item body!' })
