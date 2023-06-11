@@ -1,4 +1,4 @@
-import { click, render, TestContext } from '@ember/test-helpers'
+import { click, findAll, render, TestContext } from '@ember/test-helpers'
 import { hbs } from 'ember-cli-htmlbars'
 import { setupWorker, rest } from 'msw'
 import { module, test } from 'qunit'
@@ -200,5 +200,44 @@ module('Integrations | Coomponents | todo-item', function (hooks) {
     assert
       .dom('.p-todo-item button:first-of-type')
       .hasNoClass('mg-checkbox--checked')
+  })
+
+  test('call setEditingRecord() when edit button clicked', async function (this: Context, assert) {
+    const store = this.owner.lookup('service:store')
+    store.push({
+      data: [
+        {
+          id: '1',
+          type: 'todo-item',
+          attributes: {
+            name: 'new item!',
+            isCompleted: false,
+          },
+        },
+      ],
+    })
+
+    this.item = store.peekRecord('todo-item', 1)
+    this.setEditingRecord = (item: TodoItemModel) => {
+      item.name = 'modified name!'
+    }
+
+    await render(
+      hbs`<TodoItem @item={{this.item}} @setEditingRecord={{this.setEditingRecord}} />`
+    )
+
+    const buttons = findAll('.p-todo-item button')
+    const editButton = buttons.find(
+      (button) => button.textContent?.trim() === 'Edit'
+    )
+
+    if (!editButton) {
+      throw new Error('Edit button is not found')
+    }
+
+    await click(editButton)
+
+    const dom = assert.dom('.p-todo-item')
+    dom.hasTextContaining('modified name!')
   })
 })
