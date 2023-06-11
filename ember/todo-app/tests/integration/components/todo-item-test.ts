@@ -2,6 +2,7 @@ import { click, findAll, render, TestContext } from '@ember/test-helpers'
 import { hbs } from 'ember-cli-htmlbars'
 import { setupWorker, rest } from 'msw'
 import { module, test } from 'qunit'
+import { mock } from 'sinon'
 
 import TodoItemModel from 'todo-app/models/todo-item'
 
@@ -239,5 +240,47 @@ module('Integrations | Coomponents | todo-item', function (hooks) {
 
     const dom = assert.dom('.p-todo-item')
     dom.hasTextContaining('modified name!')
+  })
+
+  test('destroy record when delete button clicked', async function (this: Context, assert) {
+    const store = this.owner.lookup('service:store')
+    store.push({
+      data: [
+        {
+          id: '1',
+          type: 'todo-item',
+          attributes: {
+            name: 'new item!',
+            isCompleted: false,
+          },
+        },
+      ],
+    })
+
+    this.item = store.peekRecord('todo-item', 1)
+    this.setEditingRecord = () => {} // eslint-disable-line @typescript-eslint/no-empty-function
+    if (!this.item) {
+      throw new Error('Item is not found')
+    }
+
+    await render(
+      hbs`<TodoItem @item={{this.item}} @setEditingRecord={{this.setEditingRecord}} />`
+    )
+
+    const buttons = findAll('.p-todo-item button')
+    const deleteButton = buttons.find(
+      (button) => button.textContent?.trim() === 'Delete'
+    )
+
+    if (!deleteButton) {
+      throw new Error('Edit button is not found')
+    }
+
+    const mockedItem = mock(this.item)
+    assert.ok(mockedItem.expects('destroyRecord').once().returns(true))
+
+    await click(deleteButton)
+
+    mockedItem.restore()
   })
 })
