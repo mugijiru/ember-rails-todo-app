@@ -27,7 +27,7 @@ jobs:
         bundler-cache: true
 
     - name: use-chromedriver
-      uses: nanasess/setup-chromedriver@v1
+      uses: nanasess/setup-chromedriver@v2
 
     - name: Use Node.js
       uses: actions/setup-node@v3
