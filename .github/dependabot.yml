@@ -23,3 +23,12 @@ updates:
       time: "19:00"
       timezone: "Asia/Tokyo"
     versioning-strategy: "lockfile-only"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      # Check for updates to GitHub Actions every week
+      interval: "weekly"
+      day: friday
+      time: "19:00"
+      timezone: Asia/Tokyo
