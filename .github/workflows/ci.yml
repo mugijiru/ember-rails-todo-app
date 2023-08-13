@@ -173,7 +173,7 @@ jobs:
           mention: 'here'
           username: 'GitHub Actions'
           mention_if: 'failure'
-          channel: '#develop'
+          channel: '#ember-rails-todo-app'
           url: ${{ secrets.SLACK_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
