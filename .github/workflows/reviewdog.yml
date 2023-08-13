@@ -35,7 +35,7 @@ jobs:
           username: 'GitHub Actions'
           icon_emoji: 'dog'
           mention_if: 'failure'
-          channel: '#develop'
+          channel: '#ember-rails-todo-app'
           url: ${{ secrets.SLACK_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -63,7 +63,7 @@ jobs:
           username: 'GitHub Actions'
           icon_emoji: 'dog'
           mention_if: 'failure'
-          channel: '#develop'
+          channel: '#ember-rails-todo-app'
           url: ${{ secrets.SLACK_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -112,7 +112,7 @@ jobs:
           username: 'GitHub Actions'
           icon_emoji: 'dog'
           mention_if: 'failure'
-          channel: '#develop'
+          channel: '#ember-rails-todo-app'
           url: ${{ secrets.SLACK_WEBHOOK }}
           commit: true
           token: ${{ secrets.GITHUB_TOKEN }}
