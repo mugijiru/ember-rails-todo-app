@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Use ruby
       uses: ruby/setup-ruby@v1
@@ -43,7 +43,7 @@ jobs:
   brakeman:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0.5
@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - uses: reviewdog/action-setup@v1
       with:
@@ -121,7 +121,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Use ruby
       uses: ruby/setup-ruby@v1
