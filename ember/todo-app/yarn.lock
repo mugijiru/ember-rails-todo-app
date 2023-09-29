@@ -2052,9 +2052,9 @@
     "@types/ember-data" "*"
 
 "@types/ember-data__serializer@^4.0.1":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/ember-data__serializer/-/ember-data__serializer-4.0.2.tgz#b511a728dd8b9a0ab5743d22422dab05ee4449b5"
-  integrity sha512-QayXyMizZToClxYQwwAleHQf/Cxi/VFg09LMyrFKUIHZ4mvZJaUNlU2Sigt/xcVYrE9JcKAigzJCtqfigz03CQ==
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/ember-data__serializer/-/ember-data__serializer-4.0.3.tgz#f522b20ea31eb5c15bff389519be677c934b3b60"
+  integrity sha512-b/XjvqcwBjdrAJm907rEBbIc2THHElKh6aCmkYwopnwhmPYuTnCc601l70I6VXqblB7PbLxGqXMXx4cPk+z5QA==
   dependencies:
     "@types/ember-data" "*"
 
