@@ -2232,9 +2232,9 @@
     "@ember/test-helpers" "*"
 
 "@types/ember__test@*", "@types/ember__test@^4.0.1":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/ember__test/-/ember__test-4.0.2.tgz#fa077f6c2ba7c1aa261e0e7e5de75a929389c469"
-  integrity sha512-hoep5m7XmafmjIOHj+PN3T6RyCuVk6Wmjo7IVSM1aCxyIiSbJN8h1vs/Ma8I6kFoMmZYmdLsMxNoxMf7jEon4w==
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@types/ember__test/-/ember__test-4.0.4.tgz#933bce6a704859b5272ed0ba2c2bb6796538bb44"
+  integrity sha512-ur4/HjOSt7zMBFHZR9zsjtXKbdbEfvQXiQr2DknUCVxYS3PHwLU3mazjyd9QcupINxW/gtaNGAjdEhuV1V71iQ==
   dependencies:
     "@types/ember__application" "*"
 
