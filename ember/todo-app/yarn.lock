@@ -2203,12 +2203,11 @@
     "@types/ember__routing" "*"
 
 "@types/ember__array@*", "@types/ember__array@^4.0.3":
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/@types/ember__array/-/ember__array-4.0.5.tgz#f950d55b5397d08d060c9e3a70f28bf5c0b74814"
-  integrity sha512-KKTA90z01rQNXvtuNn7wv7DQ6ODhzEiOXAdjYRFzOycIpX/GnL5g6AH81+6BPWobEZ9ptqrZ9cPgo4OyLitRgw==
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/ember__array/-/ember__array-4.0.7.tgz#9fe6d08b2650fce05d3c1f5a865d62f18cb762db"
+  integrity sha512-5z/h8KzTUGa9D04Vtd0/q39GTmLppqzD/XBoc9G3fudDige4P6tiV6LB7BIzDM5IsC1rffQtxcphPjnxlgJQWg==
   dependencies:
     "@types/ember" "*"
-    "@types/ember__array" "*"
     "@types/ember__object" "*"
 
 "@types/ember__component@*", "@types/ember__component@^4.0.13":
