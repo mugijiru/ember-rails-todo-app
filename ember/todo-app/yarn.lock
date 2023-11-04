@@ -2167,9 +2167,9 @@
     ember-resolver "*"
 
 "@types/ember@*", "@types/ember@^4.0.3":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-4.0.4.tgz#279eecf5628ef130d5a660d5aafc6cb0a84d3b41"
-  integrity sha512-MeByM2it6topE4s53+OGS0qHL3mvZIP2+U+eUlhN2w4d9oA6XzP9iaXROA2Eqxjmt4UAJiHHcR2uZ5TVcbEzfw==
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/@types/ember/-/ember-4.0.8.tgz#f337cc2924479096b455abaaf8d20a699b4a1e72"
+  integrity sha512-G0mI5i5ZUBKV8ONQGhpwQVPW67cjPI+R4qi5PkSXcAvMXu6UOxlVtuk/heoEUeBRpfp+jynajFhVTnePJ2KLnA==
   dependencies:
     "@types/ember__application" "*"
     "@types/ember__array" "*"
@@ -2187,7 +2187,6 @@
     "@types/ember__template" "*"
     "@types/ember__test" "*"
     "@types/ember__utils" "*"
-    "@types/htmlbars-inline-precompile" "*"
     "@types/rsvp" "*"
 
 "@types/ember__application@*", "@types/ember__application@^4.0.5":
@@ -2401,11 +2400,6 @@
   dependencies:
     "@types/minimatch" "*"
     "@types/node" "*"
-
-"@types/htmlbars-inline-precompile@*":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/htmlbars-inline-precompile/-/htmlbars-inline-precompile-3.0.0.tgz#4d3f19eeb2af9f4605620e13a566dae3952a4f68"
-  integrity sha512-n1YwM/Q937KmS9W4Ytran71nzhhcT2FDQI00eRGBNUyeErLZspBdDBewEe1F8tcRlUdsCVo2AZBLJsRjEceTRg==
 
 "@types/js-levenshtein@^1.1.1":
   version "1.1.1"
