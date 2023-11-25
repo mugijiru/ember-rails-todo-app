@@ -2001,13 +2001,12 @@
     "@types/rsvp" "*"
 
 "@types/ember__application@*", "@types/ember__application@^4.0.5":
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/@types/ember__application/-/ember__application-4.0.8.tgz#e51a4a5a57cb9ffb46d660f73d6975a52f91e672"
-  integrity sha512-ruOQCPO4NrGsraja52wbu0lX/oXQxPvUc6pNr7v/5Lix6UdV3jkP9RW3HwWljMEj48gcCvIwuTt0HfIha4T0GQ==
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/@types/ember__application/-/ember__application-4.0.10.tgz#9fb4bee76abdc2c07fcf73006133d07e2d1c3a95"
+  integrity sha512-j4hH1qXGyO90oO1yd7swtSsZVVj6EvDdxm0xOvD8TH++YUgBEtDw5Rm9axN3eGO2MXkz266A5k4MpZQlzAMa0g==
   dependencies:
     "@glimmer/component" "^1.1.0"
     "@types/ember" "*"
-    "@types/ember__application" "*"
     "@types/ember__engine" "*"
     "@types/ember__object" "*"
     "@types/ember__owner" "*"
