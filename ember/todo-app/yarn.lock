@@ -2014,9 +2014,9 @@
     "@types/ember__routing" "*"
 
 "@types/ember__array@*", "@types/ember__array@^4.0.3":
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/@types/ember__array/-/ember__array-4.0.7.tgz#9fe6d08b2650fce05d3c1f5a865d62f18cb762db"
-  integrity sha512-5z/h8KzTUGa9D04Vtd0/q39GTmLppqzD/XBoc9G3fudDige4P6tiV6LB7BIzDM5IsC1rffQtxcphPjnxlgJQWg==
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@types/ember__array/-/ember__array-4.0.9.tgz#6a2e3552b5d31be46b8cda9886389a7f0a9e32e5"
+  integrity sha512-c1ifxQyYxRY9DLrSD5H0O4yhqQNGpMzxeE8ZDVUFNJePaheHnkkhOcgSozRvAexpWkYU33QgZO/331KaZGY7BQ==
   dependencies:
     "@types/ember" "*"
     "@types/ember__object" "*"
