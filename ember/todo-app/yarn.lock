@@ -1941,9 +1941,9 @@
     "@types/ms" "*"
 
 "@types/ember-data@*", "@types/ember-data@^4.4.10":
-  version "4.4.11"
-  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-4.4.11.tgz#28a0043136c8340ace714159e1ce7d455d8b1d4d"
-  integrity sha512-w7cQTIvP/gG9uXNu4GaONiOQTeUarl23iu6GJh9uBjpGZoFqrY1OENzkCiP1SVsu3IBPzPrQJLKzKWergvTtsQ==
+  version "4.4.15"
+  resolved "https://registry.yarnpkg.com/@types/ember-data/-/ember-data-4.4.15.tgz#d2911e69de197e4352925f7be74cc460babf5c81"
+  integrity sha512-WxmpROfS/PHCB0ch5fKzGYAWYduNN5U4sg/XIshvq1PksXq5VdxG1IIAZySstjY87CMBUE6HD6x/j+7DMEQwBQ==
   dependencies:
     "@types/ember" "*"
     "@types/ember__error" "*"
