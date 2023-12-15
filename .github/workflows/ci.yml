@@ -76,7 +76,7 @@ jobs:
       run: ./cc-test-reporter format-coverage -o tmp/cc.rspec.json
 
     - name: 'Upload cc.rspec.json'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: cc-rspec
         path: tmp/cc.rspec.json
@@ -129,7 +129,7 @@ jobs:
       run: cd ember/todo-app && ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app -t lcov
 
     - name: 'Upload cc.ember.json'
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: cc-ember
         path: tmp/cc.ember.json
