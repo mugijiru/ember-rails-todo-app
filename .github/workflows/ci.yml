@@ -141,13 +141,13 @@ jobs:
 
     steps:
     - name: Download rspec artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: cc-rspec
         path: tmp
 
     - name: Download ember artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: cc-ember
         path: tmp
