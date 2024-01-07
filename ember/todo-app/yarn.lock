@@ -1951,9 +1951,9 @@
     "@types/rsvp" "*"
 
 "@types/ember-data__adapter@^4.0.1":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@types/ember-data__adapter/-/ember-data__adapter-4.0.2.tgz#b8f5f7f569969968c8aa439fb63c966cda0ef726"
-  integrity sha512-CCz5VeNstBHLeHo3l1n9J8Z765Xa0c+q5XQNEPxswHEHtiFdygUEmc1sBfLWRLw/fJLN0wTCbusjXuB/meJ49w==
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/@types/ember-data__adapter/-/ember-data__adapter-4.0.5.tgz#ea243171f841c18338fddbab5854f68b931dd259"
+  integrity sha512-PkDaHoh7FcfRn1RwNUhabTUi8YrKRowAepS2c7wtDaR0ManzfhG8IqW7QGXieUZtWofQ/I9tDx9kebD1hO8ntg==
   dependencies:
     "@types/ember-data" "*"
 
